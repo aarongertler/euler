@@ -1,0 +1,43 @@
+// Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, 
+// there are exactly 6 routes to the bottom right corner.
+
+// How many such routes are there through a 20×20 grid?
+
+
+
+var lattice = function(row,col) {
+	var grid = []
+	for(i = 0; i < row; i++) {
+		grid[i] = [];
+		for(j = 0; j < col; j++) {
+			grid[i].push(0);
+		}
+	}
+	for(i = 0; i < row; i++) {
+		for(j = 0; j < row; j++) {
+			if(i === 0 || j === 0) {
+				grid[i][j] = 1;
+			}
+			else {
+				grid[i][j] = grid[i-1][j] + grid[i][j-1];
+			}
+		}
+	}
+	return(grid);
+}
+
+console.log(lattice(21,21))
+
+// My solution simulates the lattice as an array, showing (at each "point" on the lattice) how many different steps can be taken from that path. 
+// (Read the resulting lattice upside-down and left-to-right)
+
+
+// How to do it faster:
+
+// Abandon the whole matrix thing. Happily, once we know which rights we've taken, we also know exactly which downs we've taken.
+// So we just need to know how many combinations of rights we can take.
+// for a 20 by 20 grid, we must move right 20 times in 40 total moves. (For a 2 by 2 grid, we must move right twice in four total moves.)
+// This is like flipping heads twice in four flips: There are 6 unique ways to do it (HHTT, HTHT, HTTH, THHT, THTH, TTHH)
+
+// More generally, the formula for doing something X times in Y chances is: Y! / X!(Y-X)!  
+// In our case, X and Y are the same (20 downs, 20 rights), so the math is very easy. (21/1*22/2... *40/20)

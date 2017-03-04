@@ -35,3 +35,5 @@ console.log(primeBelowN(2000000))
 
 // Wikipedia offers some good pseudocode for skipping every third number check: https://en.wikipedia.org/wiki/Primality_test
 // The page also has some good heuristics for checking any *practical* range of primes (even if said heuristics are unproven)
+
+// Euler suggests a sieve algorithm where you start with an array of two million true/false values, then cut them off as you go. This is much faster!
