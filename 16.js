@@ -34,7 +34,7 @@ console.log(digitSum(bigNumber))
 
 // Behold, a horrifically ugly function. 
 // If I were more disciplined, I'd write a generalized "times x" function or something.
-// But alas, I am not.
+// But alas, I am not. (Though problem 20 requires this, so I did the better function in 20.js)
 
 var timesTwo = function(array) {
 	len = array.length;

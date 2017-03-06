@@ -1,0 +1,234 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'bignumber.js' ]
+2 info using npm@3.10.10
+3 info using node@v6.9.5
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData bignumber.js
+8 silly fetchNamedPackageData bignumber.js
+9 silly mapToRegistry name bignumber.js
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'bignumber.js',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'bignumber.js',
+12 silly mapToRegistry   name: 'bignumber.js',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/bignumber.js
+14 verbose request uri https://registry.npmjs.org/bignumber.js
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 1:29:14 PM
+17 verbose request id f62e5622610f9735
+18 http request GET https://registry.npmjs.org/bignumber.js
+19 http 200 https://registry.npmjs.org/bignumber.js
+20 verbose headers { server: 'nginx/1.10.1',
+20 verbose headers   'content-type': 'application/json',
+20 verbose headers   'last-modified': 'Mon, 09 Jan 2017 11:27:43 GMT',
+20 verbose headers   etag: 'W/"587373af-d67f"',
+20 verbose headers   'content-encoding': 'gzip',
+20 verbose headers   'cache-control': 'max-age=300',
+20 verbose headers   'content-length': '8901',
+20 verbose headers   'accept-ranges': 'bytes',
+20 verbose headers   date: 'Sun, 05 Mar 2017 21:29:05 GMT',
+20 verbose headers   via: '1.1 varnish',
+20 verbose headers   age: '225',
+20 verbose headers   connection: 'keep-alive',
+20 verbose headers   'x-served-by': 'cache-lax8622-LAX',
+20 verbose headers   'x-cache': 'HIT',
+20 verbose headers   'x-cache-hits': '1',
+20 verbose headers   'x-timer': 'S1488749345.559380,VS0,VE0',
+20 verbose headers   vary: 'Accept-Encoding' }
+21 silly get cb [ 200,
+21 silly get   { server: 'nginx/1.10.1',
+21 silly get     'content-type': 'application/json',
+21 silly get     'last-modified': 'Mon, 09 Jan 2017 11:27:43 GMT',
+21 silly get     etag: 'W/"587373af-d67f"',
+21 silly get     'content-encoding': 'gzip',
+21 silly get     'cache-control': 'max-age=300',
+21 silly get     'content-length': '8901',
+21 silly get     'accept-ranges': 'bytes',
+21 silly get     date: 'Sun, 05 Mar 2017 21:29:05 GMT',
+21 silly get     via: '1.1 varnish',
+21 silly get     age: '225',
+21 silly get     connection: 'keep-alive',
+21 silly get     'x-served-by': 'cache-lax8622-LAX',
+21 silly get     'x-cache': 'HIT',
+21 silly get     'x-cache-hits': '1',
+21 silly get     'x-timer': 'S1488749345.559380,VS0,VE0',
+21 silly get     vary: 'Accept-Encoding' } ]
+22 verbose get saving bignumber.js to C:\Users\Aaron\AppData\Roaming\npm-cache\registry.npmjs.org\bignumber.js\.cache.json
+23 verbose correctMkdir C:\Users\Aaron\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+24 silly install normalizeTree
+25 silly loadCurrentTree Finishing
+26 silly loadIdealTree Starting
+27 silly install loadIdealTree
+28 silly cloneCurrentTree Starting
+29 silly install cloneCurrentTreeToIdealTree
+30 silly cloneCurrentTree Finishing
+31 silly loadShrinkwrap Starting
+32 silly install loadShrinkwrap
+33 silly loadShrinkwrap Finishing
+34 silly loadAllDepsIntoIdealTree Starting
+35 silly install loadAllDepsIntoIdealTree
+36 silly resolveWithNewModule bignumber.js@4.0.0 checking installable status
+37 silly cache add args [ 'bignumber.js', null ]
+38 verbose cache add spec bignumber.js
+39 silly cache add parsed spec Result {
+39 silly cache add   raw: 'bignumber.js',
+39 silly cache add   scope: null,
+39 silly cache add   escapedName: 'bignumber.js',
+39 silly cache add   name: 'bignumber.js',
+39 silly cache add   rawSpec: '',
+39 silly cache add   spec: 'latest',
+39 silly cache add   type: 'tag' }
+40 silly addNamed bignumber.js@latest
+41 verbose addNamed "latest" is being treated as a dist-tag for bignumber.js
+42 info addNameTag [ 'bignumber.js', 'latest' ]
+43 silly mapToRegistry name bignumber.js
+44 silly mapToRegistry using default registry
+45 silly mapToRegistry registry https://registry.npmjs.org/
+46 silly mapToRegistry data Result {
+46 silly mapToRegistry   raw: 'bignumber.js',
+46 silly mapToRegistry   scope: null,
+46 silly mapToRegistry   escapedName: 'bignumber.js',
+46 silly mapToRegistry   name: 'bignumber.js',
+46 silly mapToRegistry   rawSpec: '',
+46 silly mapToRegistry   spec: 'latest',
+46 silly mapToRegistry   type: 'tag' }
+47 silly mapToRegistry uri https://registry.npmjs.org/bignumber.js
+48 verbose addNameTag registry:https://registry.npmjs.org/bignumber.js not in flight; fetching
+49 verbose get https://registry.npmjs.org/bignumber.js not expired, no request
+50 silly addNameTag next cb for bignumber.js with tag latest
+51 silly addNamed bignumber.js@4.0.0
+52 verbose addNamed "4.0.0" is a plain semver version for bignumber.js
+53 silly mapToRegistry name bignumber.js
+54 silly mapToRegistry using default registry
+55 silly mapToRegistry registry https://registry.npmjs.org/
+56 silly mapToRegistry data Result {
+56 silly mapToRegistry   raw: 'bignumber.js',
+56 silly mapToRegistry   scope: null,
+56 silly mapToRegistry   escapedName: 'bignumber.js',
+56 silly mapToRegistry   name: 'bignumber.js',
+56 silly mapToRegistry   rawSpec: '',
+56 silly mapToRegistry   spec: 'latest',
+56 silly mapToRegistry   type: 'tag' }
+57 silly mapToRegistry uri https://registry.npmjs.org/bignumber.js
+58 verbose addRemoteTarball https://registry.npmjs.org/bignumber.js/-/bignumber.js-4.0.0.tgz not in flight; adding
+59 verbose addRemoteTarball [ 'https://registry.npmjs.org/bignumber.js/-/bignumber.js-4.0.0.tgz',
+59 verbose addRemoteTarball   '26b23a3240820fb6b875f07de822004c7d34b682' ]
+60 info retry fetch attempt 1 at 1:29:15 PM
+61 info attempt registry request try #1 at 1:29:15 PM
+62 http fetch GET https://registry.npmjs.org/bignumber.js/-/bignumber.js-4.0.0.tgz
+63 http fetch 200 https://registry.npmjs.org/bignumber.js/-/bignumber.js-4.0.0.tgz
+64 silly fetchAndShaCheck shasum 26b23a3240820fb6b875f07de822004c7d34b682
+65 verbose addTmpTarball C:\Users\Aaron\AppData\Local\Temp\npm-18120-969761a6\registry.npmjs.org\bignumber.js\-\bignumber.js-4.0.0.tgz not in flight; adding
+66 verbose addTmpTarball already have metadata; skipping unpack for bignumber.js@4.0.0
+67 verbose correctMkdir C:\Users\Aaron\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+68 silly cache afterAdd bignumber.js@4.0.0
+69 verbose afterAdd C:\Users\Aaron\AppData\Roaming\npm-cache\bignumber.js\4.0.0\package\package.json not in flight; writing
+70 verbose correctMkdir C:\Users\Aaron\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+71 verbose afterAdd C:\Users\Aaron\AppData\Roaming\npm-cache\bignumber.js\4.0.0\package\package.json written
+72 silly loadAllDepsIntoIdealTree Finishing
+73 silly loadIdealTree Finishing
+74 silly currentTree code
+74 silly currentTree `-- big-integer@1.6.17
+75 silly idealTree code
+75 silly idealTree +-- big-integer@1.6.17
+75 silly idealTree `-- bignumber.js@4.0.0
+76 silly generateActionsToTake Starting
+77 silly install generateActionsToTake
+78 silly generateActionsToTake Finishing
+79 silly diffTrees action count 1
+80 silly diffTrees add bignumber.js@4.0.0
+81 silly decomposeActions action count 8
+82 silly decomposeActions fetch bignumber.js@4.0.0
+83 silly decomposeActions extract bignumber.js@4.0.0
+84 silly decomposeActions test bignumber.js@4.0.0
+85 silly decomposeActions preinstall bignumber.js@4.0.0
+86 silly decomposeActions build bignumber.js@4.0.0
+87 silly decomposeActions install bignumber.js@4.0.0
+88 silly decomposeActions postinstall bignumber.js@4.0.0
+89 silly decomposeActions finalize bignumber.js@4.0.0
+90 silly runTopLevelLifecycles Starting
+91 silly executeActions Starting
+92 silly install executeActions
+93 silly doSerial global-install 0
+94 silly doParallel fetch 1
+95 verbose correctMkdir C:\Users\Aaron\AppData\Roaming\npm-cache\_locks correctMkdir not in flight; initializing
+96 verbose lock using C:\Users\Aaron\AppData\Roaming\npm-cache\_locks\staging-d845f6c17d7dd895.lock for C:\Users\Aaron\Dropbox\code\node_modules\.staging
+97 silly doParallel extract 1
+98 silly extract bignumber.js@4.0.0
+99 verbose unbuild node_modules\.staging\bignumber.js-edf34ac7
+100 silly gentlyRm C:\Users\Aaron\Dropbox\code\node_modules\.staging\bignumber.js-edf34ac7 is being purged from base C:\Users\Aaron\Dropbox\code
+101 verbose gentlyRm don't care about contents; nuking C:\Users\Aaron\Dropbox\code\node_modules\.staging\bignumber.js-edf34ac7
+102 verbose tar unpack C:\Users\Aaron\AppData\Roaming\npm-cache\bignumber.js\4.0.0\package.tgz
+103 verbose tar unpacking to C:\Users\Aaron\Dropbox\code\node_modules\.staging\bignumber.js-edf34ac7
+104 silly gentlyRm C:\Users\Aaron\Dropbox\code\node_modules\.staging\bignumber.js-edf34ac7 is being purged
+105 verbose gentlyRm don't care about contents; nuking C:\Users\Aaron\Dropbox\code\node_modules\.staging\bignumber.js-edf34ac7
+106 silly gunzTarPerm modes [ '777', '666' ]
+107 silly gunzTarPerm extractEntry package.json
+108 silly gunzTarPerm extractEntry README.md
+109 silly gunzTarPerm extractEntry LICENCE
+110 silly gunzTarPerm extractEntry bignumber.js
+111 silly gunzTarPerm extractEntry bignumber.min.js
+112 silly gunzTarPerm extractEntry bignumber.js.map
+113 silly gunzTarPerm extractEntry bower.json
+114 silly gunzTarPerm extractEntry doc/API.html
+115 silly gentlyRm C:\Users\Aaron\Dropbox\code\node_modules\.staging\bignumber.js-edf34ac7\node_modules is being purged
+116 verbose gentlyRm don't care about contents; nuking C:\Users\Aaron\Dropbox\code\node_modules\.staging\bignumber.js-edf34ac7\node_modules
+117 silly doParallel preinstall 1
+118 silly preinstall bignumber.js@4.0.0 C:\Users\Aaron\Dropbox\code\node_modules\.staging\bignumber.js-edf34ac7
+119 info lifecycle bignumber.js@4.0.0~preinstall: bignumber.js@4.0.0
+120 silly lifecycle bignumber.js@4.0.0~preinstall: no script for preinstall, continuing
+121 silly doReverseSerial remove 0
+122 silly doSerial move 0
+123 silly doSerial finalize 1
+124 silly finalize C:\Users\Aaron\Dropbox\code\node_modules\bignumber.js
+125 verbose unlock done using C:\Users\Aaron\AppData\Roaming\npm-cache\_locks\staging-d845f6c17d7dd895.lock for C:\Users\Aaron\Dropbox\code\node_modules\.staging
+126 silly rollbackFailedOptional Starting
+127 silly rollbackFailedOptional Finishing
+128 silly runTopLevelLifecycles Finishing
+129 silly install printInstalled
+130 warn enoent ENOENT: no such file or directory, open 'C:\Users\Aaron\Dropbox\code\package.json'
+131 verbose enoent ENOENT: no such file or directory, open 'C:\Users\Aaron\Dropbox\code\package.json'
+131 verbose enoent This is most likely not a problem with npm itself
+131 verbose enoent and is related to npm not being able to find a file.
+132 warn code No description
+133 verbose If you need help, you may report this error at:
+133 verbose     <https://github.com/npm/npm/issues>
+134 warn code No repository field.
+135 verbose If you need help, you may report this error at:
+135 verbose     <https://github.com/npm/npm/issues>
+136 warn code No README data
+137 verbose If you need help, you may report this error at:
+137 verbose     <https://github.com/npm/npm/issues>
+138 warn code No license field.
+139 verbose If you need help, you may report this error at:
+139 verbose     <https://github.com/npm/npm/issues>
+140 verbose stack Error: EBUSY: resource busy or locked, rename 'C:\Users\Aaron\Dropbox\code\node_modules\.staging\bignumber.js-edf34ac7' -> 'C:\Users\Aaron\Dropbox\code\node_modules\bignumber.js'
+140 verbose stack     at destStatted (C:\Program Files\nodejs\node_modules\npm\lib\install\action\finalize.js:25:7)
+140 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\graceful-fs\polyfills.js:264:29
+140 verbose stack     at FSReqWrap.oncomplete (fs.js:123:15)
+140 verbose stack
+140 verbose stack Error: EBUSY: resource busy or locked, rename 'C:\Users\Aaron\Dropbox\code\node_modules\.staging\bignumber.js-edf34ac7' -> 'C:\Users\Aaron\Dropbox\code\node_modules\bignumber.js'
+140 verbose stack     at Error (native)
+141 verbose cwd C:\Users\Aaron\Dropbox\code\odin\euler-js
+142 error Windows_NT 6.3.9600
+143 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "bignumber.js"
+144 error node v6.9.5
+145 error npm  v3.10.10
+146 error path C:\Users\Aaron\Dropbox\code\node_modules\.staging\bignumber.js-edf34ac7
+147 error code EBUSY
+148 error errno -4082
+149 error syscall rename
+150 error EBUSY: resource busy or locked, rename 'C:\Users\Aaron\Dropbox\code\node_modules\.staging\bignumber.js-edf34ac7' -> 'C:\Users\Aaron\Dropbox\code\node_modules\bignumber.js'
+151 error If you need help, you may report this error at:
+151 error     <https://github.com/npm/npm/issues>
+152 verbose exit [ -4082, true ]
