@@ -32,16 +32,10 @@ for i in (2..100)
     if !allTerms.include?(i_j)
       allTerms.push i_j
     end
-    if i != j
-      j_i = j ** i
-      if !allTerms.include?(j_i)
-        allTerms.push j_i
-      end
-    end
   end
 end
 
-puts allTerms.length # Works after maybe 30 seconds in Ruby
+puts allTerms.length # Works after 15 seconds in Ruby
 
 # Ways to make this faster:
 # Any exponential where the base is prime will definitely be unique, push it automatically
