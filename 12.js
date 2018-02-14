@@ -17,32 +17,24 @@
 
 
 var triangle = function(n) {
-	var sum = 0
-	for(i = 1; i <= n; i++) {
-		sum += i
-	}
-	return sum;
+	return (n+1)*(n/2)
 }
 
-console.log(triangle(10))
+// console.log(triangle(10))
 
 var numDivisors = function(n) {
-	var num = 1    // all numbers have at least one divisor (1)
+	var num = 2    // all numbers have at least two divisors (one and themselves)
 	var sqrt = Math.sqrt(n) // We can stop looking once we hit the square root of n
 	for(i = 2; i <= sqrt; i++) {
 		if(n % i === 0) {
-			num++
+			num += 2 // for each divisor < sqrt, there is a divisor > sqrt
 		}
 	}
-	num = 2*num // for each divisor < sqrt, there is a divisor > sqrt
 	if(sqrt % 1 === 0) {
 		num--    // don't double-count the square root as a divisor for square numbers
 	}
 	return num;
 }
-
-console.log(numDivisors(triangle(10)))
-
 
 var tri = 0
 var divs = 0
@@ -50,10 +42,11 @@ var divs = 0
 while(divs <= 500) {
 	tri++
 	divs = numDivisors(triangle(tri))
-	// console.log(tri)
-	// console.log(divs)
 } 
 console.log(tri);
 console.log(divs);
 console.log(triangle(tri));
 
+
+// Takes about a second to do 500, 10 seconds to do 1000
+// Ways to make this faster: Not much, really (nothing JS-relevant pops up in Euler)

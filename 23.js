@@ -11,11 +11,15 @@
 // Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 
 
+// WROTE A FASTER VERSION OF THIS, SEE 23_2.JS
+
+
+
 // Very similar to 21.js! Let's grab a list of all abundant numbers first:
 
 var divisors = function(n) {     // Returns an array with all proper divisors of n
 	var divArray = [1];
-	for(var i = 2; i <= Math.sqrt(n); i++) {
+	for(var i = 2; i <= Math.sqrt(n); i++) { // No need to look past the square root, of course
 		if(n % i === 0) {
 			divArray.push(i);
 			if(n / i != i) {
@@ -27,11 +31,11 @@ var divisors = function(n) {     // Returns an array with all proper divisors of
 }
 
 var arraySum = function(a) {
-	var sum = a.reduce(function(a,b){return a+b});
+	let sum = a.reduce(function(a,b){return a+b});
 	return sum
 }
 
-var abundantList = [];
+var abundantList = []; // first, create a list of all the abundant numbers
 
 for(var i = 1; i < 28124; i++) {      
 	var m = arraySum(divisors(i));
@@ -52,19 +56,25 @@ for(var i = 1; i < 28124; i++) {
 
 for(var i = 0; i < abundantList.length; i++) {
 	for(var j = i; j < abundantList.length; j++) {     // Once we've added a + b, no need to add b + a
-		var sum = abundantList[i] + abundantList[j];
-		var index = allNums.indexOf(sum);
+		let sum = abundantList[i] + abundantList[j];
+		let index = allNums.indexOf(sum);
 		if(index !== -1) {
-			allNums.splice(index,1);
+			allNums.splice(index,1); // Remove only the number we've found from our list of all numbers
 		}
 	}
 }
 
 // console.log(allNums);
 
-var nonSums = arraySum(allNums);     // We've knocked all abundant sums out of AllNums, whatever's left should count
+var nonSums = arraySum(allNums);    // We've knocked all abundant sums out of AllNums, whatever's left should count
 
 console.log(nonSums);
+
+
+// This takes a while to complete (~30s). Ways to make it faster: Good solutions from Euler build an array that assigns each index the label of "abundant" or "not abundant" and uses that to run checks
+// Or use a library with a sum_of_divisors function
+
+
 
 // for(var i = 0; i < 28124; i++) {
 // 	if(allSums.indexOf(i) === -1) {

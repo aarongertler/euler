@@ -31,10 +31,13 @@ longest = 0 // number of steps in longest chain
 longStart = 0 // starting number for longest chain
 
 for(i = 2; i < 1000000; i++) {
-	if(collatz(i) > longest) {
-		longest = collatz(i)
+	newLength = collatz(i)
+	if(newLength > longest) {
+		longest = newLength
 		longStart = i
 	}
 }
 console.log(longest)
 console.log(longStart)
+
+// Takes about 4 seconds in JS, could be sped up with recursion, maybe? If n % 2 === 0, collatz(n/2), etc.?

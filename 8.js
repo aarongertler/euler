@@ -54,7 +54,7 @@ var bigString = "731671765313306249192251196744265747423553491949349698352031277
 
 // console.log(bigString)
 
-var bestProduct = function(n,p) {    // n is the big number, p is the number of adjacent digits
+var bestProduct = function(n,p) {    // n is the big number in string form, p is the number of adjacent digits
 	// n = n.toString()
 	len = n.length
 	// console.log(n)

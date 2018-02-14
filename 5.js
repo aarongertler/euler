@@ -21,10 +21,9 @@ smallestNumber = 1
 var buildSmallestNumber = function(n) {
 	for(var i = 2; i <= n; i++) {
 		if (smallestNumber % i != 0) {
-			var j = i;
-			var k = j;
-			while(k < n/j) {
-				k = k*j;
+			var k = j = i;
+			while(k < n/j) { // If k > n/j (that is, k is largest power of itself below n), just test k
+				k = k*j;   // When we test i = 2, k winds up being 16
 			}
 			smallestNumber = smallestNumber * k;
 			console.log("i is now " + i)

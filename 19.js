@@ -24,7 +24,7 @@ var calendar = function(n,d,m,y) {   // return the day, month, and year n days f
 	var sundayCount = 0;
 	var thirtyMonths = [4,6,9,11]
 	var thirtyOneMonths = [1,3,5,7,8,10,12]
-	for(i = 1; i < n + 1; i++) {
+	for(i = 1; i < n + 1; i++) {   // Not resetting days of the week, so i = 7 and i = 14 both read as Sundays
 		d++  // Start by adding a day to the calendar
 		if(d === 29 && m === 2 && (y % 4 != 0 || ((y % 100 === 0) && (y % 400 != 0)))) {   // February 28th, no leap year
 			d = 1;
@@ -51,12 +51,15 @@ var calendar = function(n,d,m,y) {   // return the day, month, and year n days f
 			sundayCount++;
 		}
 		if((i % 7 === 0) && (d === 1)) {
-			console.log([d,m,y,sundayCount]);
+			// console.log([d,m,y,sundayCount]);
 		}
 	}
-	// return[d,m,y,sundayCount];
+	return[d,m,y,sundayCount];
 }
 
 console.log(calendar(36890,0,1,1901))   // Start from 1/1/1901, not 1900
 
-// Easier way to do this: Just use date/time API to check each day. Sort of like cheating, but also very basic programming...
+// Faster way to do this: Just use date/time API to check each day. Sort of like cheating, but also very basic programming...
+
+// Also, many other Euler folks went after a harder-to-read, fewer-line solution, where they just checked the day of the week
+// for the first day of each month and didn't bother with other days. That's also a bit faster, though the code is fast enough that the difference isn't noticeable

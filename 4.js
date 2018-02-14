@@ -2,15 +2,12 @@
 
 // Find the largest palindrome made from the product of two 3-digit numbers.
 
-
-
-
 // Checks whether n is a palindrome
 
 // var palCheck = function(n) {  
 // 	n = n.toString();
 // 	len = n.length;
-// 	for(i = 1; i < len+1/2; i++) {
+// 	for(i = 1; i < (len+1)/2; i++) {
 // 		// console.log(n)
 // 		// console.log(i)
 // 		// console.log(len)
@@ -23,12 +20,12 @@
 // 	return true;
 // }
 
-// Method for checking palindromes faster (picked up from Euler after solving)
+// Method for checking palindromes faster, with math rather than string manipulation (picked up from Euler after solving)
 
 var reverse = function(n) {
 	var reversed = 0
 	while(n > 0) {
-		reversed = 10 * reversed + (n % 10);
+		reversed = 10 * (reversed + (n % 10));
 		n = Math.floor(n/10);
 	}
 	return reversed;
@@ -44,7 +41,7 @@ var palCheck = function(n) {
 var largestPal = 0 // store the largest palindrome we've seen so far
 
 for(var j = 100; j < 1000; j++) {
-	for (k = j; k < 1000; k++) { // no need to start at k = 100, since checking 101 * 100 is redundant with checking 100 * 101
+	for (k = j; k < 1000; k++) { // no need to start at k = 100 every time, since checking 105 * 104 is redundant with checking 104 * 105
 		var product = j*k;
 		if(palCheck(product)) {
 			if(product > largestPal) { // only add palindromes if they are they biggest we've seen so far

@@ -46,6 +46,9 @@ for(var i = 1; i < 10001; i++) {
 
 console.log(amicableSum)
 
+// Ways to make this faster: Remove all prime numbers first?
+
+
 // var genDivisorSums = function(n) {     // For all numbers up to n, create an array of pairs (number, divisor sum)
 // 	var allDivArray = []
 // 	for(var i = 1; i < n + 1; i++) {

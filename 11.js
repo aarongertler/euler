@@ -25,9 +25,8 @@ var gridToArr = function(grid,row,col) {
 	for(i = 0; i < row; i++) {
 		array[i] = [];
 		for(j = 0; j < col; j++) {
-			array[i].push(parseInt(grid.substring(3*i*row + 3*j, 3*i*row + 3*(j+1))))
+			array[i].push(parseInt(grid.substring(3*i*row + 3*j, 3*i*row + 3*j +3)))
 		}
-		// array[i].push(grid.substring(i*3*col,i*3*col+60))
 	}
 	return array
 }
@@ -46,7 +45,7 @@ var rowProduct = function(array,p) {    // p is the number of adjacent digits
 		for(var j = 0; j < col - p + 1; j++) {
 		 	var product = 1;
 			for(var k = 0; k < p; k++) {
-				product = product * array[i][j+k];
+				product = product * array[i][j+k];  // There's probably some way to make this loop a bit cleaner...
 			}
 			sum++
 			// console.log(product)
@@ -120,3 +119,9 @@ var diagonalProduct = function(array,p) {    // p is the number of adjacent digi
 }
 
 console.log(diagonalProduct(newArray,4))
+
+
+// How to make this faster:
+// 1. Combine some of the redundancies between your methods 
+// (only need one for loop of i and j, checking the horizontal, vertical, and diagonals of each number you hit, respectively)
+// 2. Have a single "highest" variable that can be updated by all three functions. Reuse, reduce, recycle!

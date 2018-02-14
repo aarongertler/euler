@@ -25,7 +25,7 @@
 // 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 // 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
 
-// Note: The triangles are actually equilateral, not right, so that every number has two adjacent numbers below
+// NOTE: The triangles are actually equilateral, not right, so every number has two adjacent numbers below, not three                                       
 
 var smallTriangle = "08 \
 65 62 \
@@ -55,7 +55,7 @@ var numberOfRows = function(n) {   // determine the number of rows in a triangle
 	var subtract = 1;
 	while(n > 0) {
 		n -= subtract;
-		subtract++;
+		subtract++; // First row has one number, second has two numbers, etc.
 		rows++;
 	}
 	return(rows);
@@ -64,7 +64,7 @@ var numberOfRows = function(n) {   // determine the number of rows in a triangle
 var createArray = function(s) {   // turn a string of two-digit numbers into an array of numbers
 	var array = [];
 	for(i = 0; i < s.length / 3; i++) {
-		array.push(parseInt(s.substring(i*3,(i+1)*3)));
+		array.push(parseInt(s.substring(i*3,(i+1)*3))); // parseInt converts a string into a number
 	}
 	return array;
 }
@@ -75,7 +75,7 @@ var loadTriangle = function(a) {  // turn a single array into a "triangular" arr
 	var numberOfNumbers = a.length;
 	var rowCount = numberOfRows(numberOfNumbers);
 	var triangle = [];
-	var k = 0;    // tracks which number we're pushing into the row next
+	var k = 0;    // tracks which number of our full array we're pushing into the row next (1 for first row, 2-3 for second, etc.)
 	for(i = 0; i < rowCount; i++) {
 		triangle[i] = [];   // Initialize a new "row" of the triangle
 		for(j = 0; j < i + 1; j++) {
@@ -91,7 +91,7 @@ var loadTriangle = function(a) {  // turn a single array into a "triangular" arr
 console.log(loadTriangle(createArray(smallTriangle)))
 console.log(loadTriangle(createArray(bigTriangle)))
 
-var triangulate = function(s) {
+var triangulate = function(s) {   // Sandwich both of our triangle-making functions together for convenience
 	return loadTriangle(createArray(s));
 }
 
@@ -106,24 +106,24 @@ console.log(triangulate(smallTriangle).reverse());
 // Seems fine, but maybe not recursive enough? We'd still be running through a lot of half-finished paths...
 
 // Second idea: Experiment with recursion. First, invert the triangle. Then ask: 
-// What's the highest value we can reach at number n in row x? Answer: The max of the same question for the two 
-// adjacent numbers in row x-1. 
+// What's the highest value we can reach at number n in row x? Answer: n + the max of the same question for the two 
+// adjacent numbers in row x-1. (Does this count as dynamic programming?)
 
-var testArray = triangulate(bigTriangle).reverse()
+var testArray = triangulate(bigTriangle).reverse() // Invert the triangle, since we want to go "from the bottom, up"
 
-var spotMax = function(a,b,c) {     // for the c-th number in the b-th row of triangle a, what is the max value we can have upon reaching it?
-	if(c < 0) {
+var spotMax = function(tri,a,b) {     // for the b-th number in the a-th row of a triangle, what is the max value we can have upon reaching it?
+	if(b < 0) {
 		return 0;   // We can't check the spotmax of this number, because it doesn't exist
 	}
-	if(b === 0) {  // We're on the last row, recursion over
-		return a[b][c];
+	if(a === 0) {  // We're on the last row, recursion over
+		return tri[a][b];
 	}
 	else {
-		return a[b][c] + Math.max(spotMax(a,b-1,c), spotMax(a,b-1,c+1))   // spotMax(a,4,0) = a[4][0] + whichever spotMax is highest from (a,3,0) and (a,3,1)
+		return tri[a][b] + Math.max(spotMax(tri,a-1,b), spotMax(tri,a-1,b+1))   // spotMax(a,4,0) = a[4][0] + whichever spotMax is highest from (a,3,0) and (a,3,1)
 	}
 }
 
-console.log(spotMax(testArray,testArray.length-1,0))
+console.log(spotMax(testArray,testArray.length-1,0))   // But is this really faster? Simpler, yes, but faster?
 
 
-// That works! Now to see if it will work for 67...
+// That works! Now to see if it will work for 67... (it did) (also, some neat visuals in the solution thread, of what the sums look like for every point in the triangle)

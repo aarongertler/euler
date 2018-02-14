@@ -28,10 +28,6 @@ console.log(bigString)
 console.log(digitSum(bigNumber))
 
 
-// 2 ^ 10 = 7  2 ^ 20 = 31  2 ^ 30 = 37
-
-
-
 // Behold, a horrifically ugly function. 
 // If I were more disciplined, I'd write a generalized "times x" function or something.
 // But alas, I am not. (Though problem 20 requires this, so I did the better function in 20.js)
@@ -69,5 +65,5 @@ for(j = 1; j < 1000; j++) {
 
 var sum = power.reduce(function(a,b){return a+b});
 
-console.log(power)
+// console.log(power)
 console.log(sum)

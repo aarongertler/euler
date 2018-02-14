@@ -19,14 +19,14 @@ var lattice = function(row,col) {
 				grid[i][j] = 1;
 			}
 			else {
-				grid[i][j] = grid[i-1][j] + grid[i][j-1];
+				grid[i][j] = grid[i-1][j] + grid[i][j-1]; // If you can get to 1,1 in two ways and 2,0 in one way, you can get to 2,1 in three ways (by stepping right from 1,1 after taking either of two paths, or stepping down from 2,0)
 			}
 		}
 	}
 	return(grid);
 }
 
-console.log(lattice(21,21))
+// console.log(lattice(21,21))   // 21 rows and 21 columns of lines surround a 20x20 "box" grid
 
 // My solution simulates the lattice as an array, showing (at each "point" on the lattice) how many different steps can be taken from that path. 
 // (Read the resulting lattice upside-down and left-to-right)
@@ -41,3 +41,20 @@ console.log(lattice(21,21))
 
 // More generally, the formula for doing something X times in Y chances is: Y! / X!(Y-X)!  
 // In our case, X and Y are the same (20 downs, 20 rights), so the math is very easy. (21/1*22/2... *40/20)
+
+function pathNumber(length,width) {
+	sum = length + width
+	return factorial(sum) / factorial(length)*factorial(width)
+}
+
+function factorial(n) {
+	var result = n
+	while(n > 1) {
+		n--
+		result = result * n
+	}
+	return result
+}
+
+// console.log(factorial(5))
+console.log(pathNumber(20,20)) // For some reason, this returns a number too large to be displayed, while the array method handled large numbers just fine...

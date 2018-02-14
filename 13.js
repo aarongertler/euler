@@ -3,9 +3,9 @@
 // saved actual numbers in 13.js
 
 
-// Handline 50-digit numbers in JS is not worth the trouble. I just shaved them down to 18 digits, plenty for an accurate first 10
+// Handling 50-digit numbers in JS is not worth the trouble. I just shaved them down to 18 digits, plenty for an accurate first 10
 
-var array = [];
+var array = []; // Could easily load from a file, but Sublime makes setting up the below very easy
 
 array.push(37107287533902102)
 array.push(46376937677490009)
@@ -112,4 +112,4 @@ console.log(array)
 
 var sum = array.reduce(function(a,b){return a+b});
 
-console.log(sum)
+console.log(sum - (sum % 1000000000)) // Easier to read ten digits this way

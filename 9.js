@@ -17,9 +17,9 @@ var isTriplet = function(a,b,c) {
 // console.log(isTriplet(210,280,350))
 
 
-for(a = 3; a < 334; a++) {
-	for(b = a; b < 500; b++) {     // assume b > a
-		for(c = b + 4; c < 1000; c++) {  // c > b + 3 (as 3,4,5 is the smallest triple); also, c < 500, since (500, 499, 1) doesn't work 
+for(a = 3; a < 333; a++) { // a can't be more than 1/3 of 1000 (lower bound is smaller, but no need to bother with that)
+	for(b = a; b < 499; b++) {     // assume b > a
+		for(c = b + 4; c < 500; c++) {  // c > b + 3 (as 3,4,5 is the smallest triple); also, c < 500, since (500, 499, 1) doesn't work 
 			if(isTriplet(a,b,c)) {
 				console.log(a + "," + b + "," + c);
 				if(a+b+c === 1000) { 
@@ -36,7 +36,7 @@ for(a = 3; a < 334; a++) {
 // For small triangle perimeters, finding better bounds for the numbers will help
 
 // For bigger triangles (e.g. finding a triplet that sums to ten million):
-// It helps to know that, for any m and n where m > n > 0, the greatest common denominator is 1, and m or n is even, a triplet can be formed thus:
+// It helps to know (from Euler's site, not my own work) that for any m and n where m > n > 0, the greatest common denominator is 1, and m or n is even, a triplet can be formed thus:
 // a = m^2 - n^2    b = 2mn     c = m^2 + n^2
 // Those are primitive triplets, with a GCD of 1 (e.g. 3,4,5). We can turn them into bigger, proportional triplets (e.g. 6,8,10) if we multiply by an integer (d)
 // So all triplet sums take the form   a + b + c = d * (2)(m)(m+n)

@@ -42,16 +42,13 @@ var letterCount = function(n) {
 	}
 } 
 
-console.log(letterCount(12));
+// console.log(letterCount(12));
 
 var numberOfLetters = function(n) { // Find the number of letters in a given word.
 	var numSum = 0;
 	if(n % 100 === 0) {
-		return letterCount(n / 100) + 7;
+		return letterCount(n / 100) + 7; // Take care of all the hundreds
 	}
-	// if(n.length === 3) {
-	// 	numSum += 10;     // Add "hundred and" to other three-digit numbers
-	// }
 	if(letterCount(n) != 0) {
 		return letterCount(n);    // If we have this number in our "database", just return it
 	}
@@ -64,10 +61,10 @@ var numberOfLetters = function(n) { // Find the number of letters in a given wor
 	return numSum;
 }
 
-console.log(numberOfLetters(2));
-console.log(numberOfLetters(42));
-console.log(numberOfLetters(300));
-console.log(numberOfLetters(342));
+// console.log(numberOfLetters(2));
+// console.log(numberOfLetters(42));
+// console.log(numberOfLetters(300));
+// console.log(numberOfLetters(342));
 
 var total = 11;  // Pre-adding the letters from "one thousand" to our total
 

@@ -36,7 +36,9 @@ console.log(sum*sum - sumSquares)
 
 // Sum of squares: f(n+1) = f(n) + (n+1)^2
 // Add 1 inside the function, add (n+1)^2 overall = add (n^2 + 2n + 1) overall
-// f(n) = f(n-1) + n^2 + 2n + 1 = n(n + 2 + 1/n) = add n(n + 2) + 1
+// f(n) = f(n-1) + n^2
+// f(n) = n^2 + (n-1)^2 + (n-2)^2... + 1
+// Trying a polynomial approach to see if I can make something work (as it turns out, three variables would have sufficed, maybe?)
 // f(n) = ax^3 + bx^2 + cx + d
 // 64a + 16b + 4c + d = 30
 // 27a + 9b + 3c + d = 14

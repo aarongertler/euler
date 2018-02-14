@@ -47,4 +47,4 @@ console.log(largestPrime(600851475143))
 	// we know that there can be only one factor greater than sqrt(37 * 41)
 	// and once we divide out 37, only one factor greater than sqrt(41)
 	// once we get past 6, 41 is the only possible factor left (anything else would imply we missed a factor earlier)
-// Actually, I went back and implemented this, just for fun!
+// Actually, I went back and implemented the second part, just for fun!

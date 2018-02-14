@@ -29,7 +29,7 @@ var alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
 var nameSum = 0;
 
 for(var i = 0; i < sortList.length; i++) {
-	let nameVal = 0;
+	let nameVal = 0; // healthier variable naming with limited scope = a good thing to practice
 	for(var j = 0; j < sortList[i].length; j++) {
 		letter = sortList[i].charAt(j);
 		// console.log(letter);
