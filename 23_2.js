@@ -43,4 +43,4 @@ for(var i = 1; i < 28124; i++) {
 	}
 }
 
-console.log(sum)  // Yes, this is at least 10 times faster than the old version!
+console.log(sum)  // Yes, this is at least 10 times faster than the old version! Nice!
