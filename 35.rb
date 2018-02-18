@@ -23,7 +23,7 @@ for i in (0...last)
     next
   end
   for j in (0...str.length)
-    str = (str[1..-1] + str[0]).to_i  # Rotate the string once
+    str = (str[1..-1] + str[0]).to_i  # Rotate the string once (first number becomes the last, everything else moves "up" by one)
     if !Prime.prime?(str) then
       prime_array[i] = 0  # The original prime doesn't work, wipe it out of the array
       break # Once we find a bad rotation, stop rotating, we're done with this number
@@ -32,10 +32,12 @@ for i in (0...last)
   end
 end
 
-prime_array.reject! { |n| n < 1} # Get rid of all the zeroes (so we only have primes that work)
+prime_array.reject! { |n| n == 0} # Get rid of all the zeroes (so we only have primes that work)
 puts prime_array
+puts prime_array.length # 55, runs in about half a second
 
 
 # Ways to make this faster: Cut off all rotations you test as you go
 # (so that you don't check 971 after checking 179)
+# This solution is considerably shorter than most Euler solutions -- happy with this version
 

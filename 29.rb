@@ -1,3 +1,6 @@
+require 'prime'
+require 'benchmark'
+
 # Consider all integer combinations of a^b for 2 ≤ a ≤ 5 and 2 ≤ b ≤ 5:
 
 # 2^2=4, 2^3=8, 2^4=16, 2^5=32
@@ -26,16 +29,35 @@ allTerms = []
 
 # We did hit a memory error with the above, so I assume the huge index values were a problem. Let's try again:
 
-for i in (2..100)
-  for j in (2..100)
-    i_j = i ** j
-    if !allTerms.include?(i_j)
-      allTerms.push i_j
-    end
-  end
-end
+primetime = Benchmark.measure {
+	for i in (2..100)
+	  for j in (2..100)
+	    i_j = i ** j
+	    if Prime.prime?(i)
+	    	allTerms.push i_j
+	    elsif !allTerms.include?(i_j)
+	      allTerms.push i_j
+	    end
+	  end
+	end
+}
 
-puts allTerms.length # Works after 15 seconds in Ruby
+nonprime = Benchmark.measure {
+	for i in (2..100)
+	  for j in (2..100)
+	    i_j = i ** j
+	    if !allTerms.include?(i_j)
+	      allTerms.push i_j
+	    end
+	  end
+	end
+}
+
+puts primetime # this is about 20% faster
+puts nonprime
+
+
+# puts allTerms.length # Works after 4 seconds in Ruby (with the new Dell Inspiron)
 
 # Ways to make this faster:
 # Any exponential where the base is prime will definitely be unique, push it automatically

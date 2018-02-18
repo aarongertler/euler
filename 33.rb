@@ -37,3 +37,5 @@ puts solutions
 solutions = solutions.flat_map { |n| n[0] / n[1]}  # Get everything in simplified form for easy multiplication
 puts solutions 
 
+# Ways to do this faster: Assemble all the fractions yourself (for a and b in 1...10, a*10 + b / b*10 + a), though since we skip multiples of 10 I doubt that would add much speed
+# in general, all the other solutions seem broadly similar, no crazy one-liners

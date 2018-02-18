@@ -31,25 +31,23 @@ def is_pandigital number
   end
   if new_number.to_s.chars.sort.join == '123456789'
     new_number
+  else
+    0
   end
 end
 
 for i in (91..99)
-  if is_pandigital(i)
     pandigitals << is_pandigital(i)
-  end
 end
 
 for i in (911..999)
-  if is_pandigital(i)
     pandigitals << is_pandigital(i)
-  end
 end
 
 for i in (9111..9999)
-  if is_pandigital(i)
     pandigitals << is_pandigital(i)
-  end
 end
 
 puts "Largest number: #{pandigitals.max}"
+
+# Ways to make this faster: You could do more filtering up front to narrow the range of numbers you look at, but this is quite fast already

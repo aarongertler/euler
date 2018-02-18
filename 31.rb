@@ -8,7 +8,7 @@
 # How many different ways can £2 be made using any number of coins?
 
 
-# 1 * 2 * 4 * 10 * 20 * 40 * 100 * 200 = 1.28 billion total solutions (can't brute-force)
+# 1 * 2 * 4 * 10 * 20 * 40 * 100 * 200 = 1.28 billion total solutions (shouldn't try to brute-force)
 
 $solution_array = []
 
@@ -71,7 +71,8 @@ solution = []
 # plus one more option (just using a 20). 
 
 # So, for any value given a set of coins, the number of possible combinations = the number of ways you can break down the biggest
-# denominator of coin * the number of coins of that type you can fit into the value
+# denominator of coin * the number of coins of that type you can fit into the value (but order doesn't matter)
+# So 6 could be 1+1+1+1+1+1, 2+1+1+1+1, 2+2+1+1, or 2+2+2 = 4 ways (what's the permutation logic to use here? Not sure...)
 
 
 # test_goal = 30
@@ -83,15 +84,24 @@ ways[0] = 1
 
 # puts ways.length
 
-for i in (0..coin_array.length - 1)      # Look at each coin in the array
+for i in (0..coin_array.length - 1)      # Look at each coin in the array (each time we loop through the coins, we'll update our "ways" array to see how many ways we can make each number with the coins we've seen so far)
   for j in (coin_array[i]..goal)    # For all values between the coin's value and our goal value, see how many permutations this coin adds
     ways[j] += ways[j - coin_array[i]]   # For value j, add a number of new ways to make it equal to the ways we can make j - (coin value) 
+    	# Why do we subtract the value of the coin we're looking at to find our array index? Because we're pretending to add exactly that coin to the number we're looking at.
+    	# Using 2-pence coins in addition to 1-pence coins, how many ways can we make 8? Well, we know we can add our new coin, and then we need 6 more pence, so let's see how many ways there are to make 6!
+    	# When we add 5-pence coins, we have 7 ways to make 8, not 5 -- because we can use a 5-pence coin, and then add 3 in (let's check) two different ways!
   end
 end
  
 puts ways[200]
 
 # Super fast! Hooray for dynamic programming!
+[0 1 2 3 4 5 6 7 8 9 10 11]
+[1 1 1 1 1 1 1 1 1 1 1 1]
+[1 1 2 2 3 3 4 4 5 5 6 6]
+[1 1 2 2 3 4 5 6 7 8 10 11]
+ # Check out how many ways there are to make 10 when 5s are available -- 6 ways that use only 1 and 2, or we could add a 5 and have (let's check) 4 ways to add 5 to our original 5-pence coin
+ # (5 + 5, 5 + 2 + 2 + 1, 5+2+1+1+1, 5+1+1+1+1+1)
 
 
 # For an example of the last note: When we look at the 20p coin for the value 25p, we take the number of ways we can make 5p and add them

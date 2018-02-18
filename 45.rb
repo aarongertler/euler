@@ -15,14 +15,14 @@ end
 
 # Thus, H(3) = T(5), H(4) = T(7), and so on
 
-flag = false # Avoiding a long "until" statement
+flag = false # Avoiding a long "until" statement with this "flag" workaround, I think it makes the code a bit cleaner to read
 
 count = 285 # Our defined starting point
 
 until flag == true
   count += 1
   tri_n = (count * (count + 1)) / 2
-  if tri_n % 2 != 0 && is_pentagonal(tri_n)
+  if tri_n % 2 != 0 && is_pentagonal(tri_n) # As noted above, all triangular numbers with an odd "n" seed are also hexagonal
     puts tri_n
     flag = true
   end

@@ -21,13 +21,13 @@
 # After all, how can we tell whether a recurring cycle is really hundreds of digits long?
 # For now, we'll look at the cycles we can get by dividing Ruby floats and see if that works out.
 
-require 'prime'
+# require 'prime'
 
-def getFraction(n)
-  n = n.to_f
-  return (1/n).to_s[2..-1] # cuts out 0. from our string
+# def getFraction(n)
+#   n = n.to_f
+#   return (1/n).to_s[2..-1] # cuts out 0. from our string
 
-end
+# end
 
 # puts getFraction(8)
 # puts getFraction(13) # 16 digits, enough for two repetitions of 6 digits
@@ -67,35 +67,42 @@ end
 # so now it looks like we're looping. (For 8, 1/8 -> 1 -> 10/8 -> 2 -> 20 / 8 -> 4 -> 40/8 -> 0, so the fraction stops
 # after three digits.)
 
-# (Why do this remainder stuff? Well, 1/7 has a 0 in the ones place, since no sevens go into one. But in the tenths place,
-# it has a 1, because one 0.7 goes into 1. That leaves 0.3 "left" for the hundredths place, and four 0.07s go into 0.3. 
-# And so on. Once we get the same remainder at some point, the pattern has to repeat itself, and we have a cycle.)
+# (Why do this remainder stuff? Well, once we find a remainder that matches a previous remainder, we know that the pattern is going
+# to continue on forever, since there's no way we could "break out".)
 
 def remainderCycle(n) # Find how long the cycle is for a particular number
   cycle_length = 1
   remainder = 1
   found_remainders = []
-  until found_remainders[remainder] != nil
+  until found_remainders[remainder] != nil # Not checking for repeating DIGITS, but repeating REMAINDERS -- so there are 92 different options for 93, which means it can have a repeating pattern of up to 92 digits
     found_remainders[remainder] = cycle_length
     remainder = (remainder*10) % n
     cycle_length += 1
+    # puts found_remainders
   end
-  cycle_length - found_remainders[remainder]
+  # cycle_length - found_remainders[remainder]  # originally had this output to see how long the cycle had been going (if your 40th number is the same as your 10th number, you have a cycle length of 30)
+    # But this doesn't seem to be necessary, because any repeating cycle we find will repeat from the first digit, not the 10th -- so removing this line doesn't change the answer 
+  cycle_length
 end
 
-# puts remainderCycle(93)
+puts remainderCycle(93)
 
 longest_length = 0
 longest_number = 0
 
-for i in 7..1000
+i = 1
+
+while i < 1000 do
   this_length = remainderCycle(i)
-  puts this_length
   if longest_length < this_length
     longest_length = this_length 
     longest_number = i
   end
+  i += 2  # don't check even numbers, even number x can only repeat the same number of times as x/2, so we'll catch it before we get to x
 end
 
 puts longest_length
 puts longest_number
+
+# Maybe we could speed this up by just looking at primes? Skipping even numbers seems like a reasonable compromise
+# This could be written shorter -- some Euler solutions used half the lines -- but I'm fairly happy with this version

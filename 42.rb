@@ -17,15 +17,11 @@ file = "p042_words.txt"
 txt_string = ""
 txt_string << File.read(File.open(file))
 txt_array = txt_string.split(",") # Gives us an array of individual words
-
 trim_array = []
 
 txt_array.each do |word| 
   trim_array << word.tr("\"","")   # Trim the quotation marks from the file
 end
-
-# puts trim_array[1]
-
 
 # Match all letters to their numerical values
 
@@ -39,15 +35,13 @@ end
 
 # letter_hash.each { |key, val| print "#{key}: #{val} "}
 
-
 triangle_array = []
 sum = 0
 
 for i in 1..25
   sum += i
-  triangle_array << sum
+  triangle_array << sum  # Could also run the n*(n+1)/2 formula to generate these, doubt it makes a speed difference
 end
-
 
 triangle_count = 0
 
@@ -63,7 +57,6 @@ for s in (0...trim_array.length)
 end
 
 puts triangle_count
-
 
 
 

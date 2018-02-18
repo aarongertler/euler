@@ -26,16 +26,22 @@
 # And permutation(bc) just returns b + c (bc) and c + b (cb)
 
 
+# From StackOverflow: https://stackoverflow.com/questions/25224321/find-all-the-possible-permutations-using-ruby-and-recursion
+
 def permutation(string)
   return [''] if string.empty?
 
   (0...string.size).flat_map { |i|    # flat_map = "return all of our results in one array" (all the permutations)
     chr, rest = string[i], string[0...i] + string[i+1..-1]    # chr = letter we start with
-    permutation(rest).map { |sub|
-      chr + sub
+    # print "chr =" + chr
+    # print "rest =" + rest
+    permutation(rest).map { |sub|  # This is a loop, essentially, where we grab one character at a time, then have the next character be a random selection from our remaining characters (until all the characters are gone)
+    chr + sub # All the addition happens at the end, once the recursion chain comes together
     }
   }
 end
+
+# puts permutation('1234')
 
 all_permutations = permutation('123456789') # Takes about five seconds to put together
 # puts all_permutations.length

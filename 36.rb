@@ -39,11 +39,11 @@ puts solutions.inject(0, :+)
 
 
 # Ways to make this faster (for very large numbers):
-# 1. Create an algorithm to generate palindromes in base 2 and check them in base 10
-# Because any x-digit number (e.g. '123') corresponds to two palindromes of 2x - 1 and 2x digits
-# ('12321', '123321'), there are only about 2000 palindromes below 1000000 we'd ever need to check
+# 1. Create an algorithm to find all palindromes in base 10 and then check them in base 2 (would this really be faster? You'd only have roughly 1000 numbers to check)
 
 # Euler demonstrates a cool palindrome generator for base 2, could be fun to come back and build that
+
+# Also, 123.to_s(2) returns 123 in binary, so that's cool
 
 
 

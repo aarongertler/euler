@@ -9,6 +9,7 @@
 
 # d1 × d10 × d100 × d1000 × d10000 × d100000 × d1000000
 
+require 'benchmark'
 
 # The big question: Can Ruby handle a million-character string?
 
@@ -17,19 +18,21 @@ count = 1
 digits = 1
 product = 1
 
-while digits < 10000000
-  count += 1
-  string << count.to_s # << is MUCH faster than += for strings
-  digits += count.to_s.length
-end
+puts Benchmark.measure {
+	while digits < 10000000
+	  count += 1
+	  string << count.to_s # << is MUCH faster than += for strings
+	  digits += count.to_s.length
+	end
 
-product = 1
+	product = 1
 
-for i in (0..7)
-  product = product * string[(10 ** i) - 1].to_i
-end
+	for i in (0..7)
+	  product = product * string[(10 ** i) - 1].to_i
+	end
+}
 
-puts product 
+puts product # takes half a second
 
 # Bonus two-line Ruby solution (which is, alas, much slower):
 
@@ -41,17 +44,5 @@ puts product
 # 1. Find a formula for the nth digit (involves using a formula to find the index of the number n,
 # which is actually pretty simple if n is a power of 10)
 
-# Using an idea from another Euler person, implemented in Ruby rather than Python:
-
-# def index number
-#   b = 0
-#   c = 1
-#   while c * 10 < number
-#     b *= 10
-#     c += 1
-#   end
-#   (b + 1) * (number - c) + ((c * (9 * b - 1) + 1) / 9)
-# end
-
-# From here, we'd need to find the digit at that index, which is a bit tougher,
-# but some sharp Euler folks have some ideas
+# Also, we know that there are 9 digits from 1-9, 180 digits from 10-99, 2700 from 100-999, etc.
+# So that can help us with the indexing as well 

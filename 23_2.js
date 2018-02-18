@@ -44,3 +44,5 @@ for(var i = 1; i < 28124; i++) {
 }
 
 console.log(sum)  // Yes, this is at least 10 times faster than the old version! Nice!
+
+// Note: After writing this, learned to change proper push URLs remotely in git: https://stackoverflow.com/questions/2432764/change-the-uri-url-for-a-remote-git-repository

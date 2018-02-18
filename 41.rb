@@ -16,7 +16,7 @@
 
 require 'prime'
 
-def permutation(string)
+def permutation(string) # Recycling this from the last time we had to build lots of permutations
   return [''] if string.empty?
 
   (0...string.size).flat_map { |i|    # flat_map = "return all of our results in one array" (all the permutations)
@@ -32,11 +32,12 @@ all_permutations = permutation('1234567') # Returns an array of just 5040 number
 
 highest = 0
 
-for i in (0...all_permutations.length)
-  this_prime = all_permutations[i].to_i
-  if Prime.prime?(this_prime)      # Our permutation array is already sorted least -> greatest, so the last prime will be the largest
-    highest = this_prime
+5040.downto(0).each { |i|  # Faster to count backwards, since our permutations are sorted least -> greatest and the "last" prime found will be the largest
+  test_int = all_permutations[i].to_i
+  if Prime.prime?(test_int)     
+    puts test_int
+    break
   end
-end
+}
 
-puts highest
+# puts highest

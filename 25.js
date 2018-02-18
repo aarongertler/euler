@@ -19,7 +19,7 @@
 
 // What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
 
-// Just looking at the first four digits should be very close to accurate
+// Just looking at the first few digits of the larger numbers should be very close to accurate
 
 var firstFew = function(n,d) {
 	n = n.toString();
@@ -46,7 +46,7 @@ var trueFib = function(n) {
 	}
 }
 
-var fakeFib = function(n) {    // We need the estimator, node only counts up to 308 digits
+var fakeFib = function(n) {    // We need the estimator, node only counts up to 308 digits (n is the number of digits we want to hit)
 	var steps = 2;
 	var a = 0;
 	var b = 1;
@@ -63,7 +63,7 @@ var fakeFib = function(n) {    // We need the estimator, node only counts up to 
 			c = firstFew(c,d)
 		}
 		steps++
-		console.log(c);
+		// console.log(c);
 	}
 	return steps;
 }
@@ -113,7 +113,7 @@ var finalFib = function(n) {
 		a = b.reverse()    // We were getting double-reversed somewhere, this fix is a hack
 		b = c
 		c = aPlusB(a,b);
-		console.log(c);
+		// console.log(c);
 		steps++
 	}
 	return steps;
@@ -122,10 +122,28 @@ var finalFib = function(n) {
 console.log(finalFib(20));
 // console.log(aPlusB([9,6,1,1],[9,9,6,8]))
 
+console.log(finalFib(1000));
+console.log(fakeFib(1000));
+
 
 // This solution is highly accurate for as many digits as I can reasonably count, but gives a
-// final answer for 1000 digits that is not correct. Not sure why.
+// final answer for 1000 digits that is not correct (off by about 700). Not sure why.
 
 // Turns out that my estimator actually does give the correct answer, when I account for the first two
 // "steps" taken by having c already equal to 2 at the beginning
 
+// Ways to make this faster: Try BigNumber in JS, use a language that can handle lots of digits, try using log base 10 to return the number of digits
+
+
+
+// fibonacci = [1, 1]
+// index = 1
+
+// while(fibonacci[index].toString().length < 1000) {
+// 	 fibonacci.push(fibonacci[index - 1] + fibonacci[index])
+//   index += 1
+// }
+
+// console.log(index + 1)
+
+// Sadly, this breaks Javascript's memory (though it works in Python, according to Euler folks)

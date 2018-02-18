@@ -35,4 +35,7 @@ for i in (2..354294) # Could start higher than 2, keeping it simple for now
   end
 end
 
-puts solution_array.inject(0, :+)   # Takes about 5 seconds to compute
+puts solution_array.inject(0, :+)   # Takes about 5 seconds to compute (1 on the Dell)
+
+# Ways to make this faster: Skip multiples of 10 as explained above (might make things a bit faster once we account for the extra checks we'd need to build in)
+	# Or perhaps get rid of "digitSum" and just do the mapping within the loop

@@ -16,7 +16,7 @@
 # How will we know a number can't be written out this way?
 # Answer: We take the number, divide it by two, take the square root of that, and round it down.
 # This gives us the biggest square that could feasibly work. We test that square and all smaller squares.
-# For each square, subtract it from the original number and see if the result is prime. 
+# For each square, subtract it from the original number (twice) and see if the result is prime. 
 # If you get all the way down to 1^2 and nothing's worked, we have our disproof!
 
 require 'prime'
@@ -29,15 +29,15 @@ until flag == true
   if Prime.prime?(count) then  # Don't analyze prime numbers
     next
   end
-  unrounded_root = Math.sqrt(count / 2)
-  biggest_root = (unrounded_root - (unrounded_root % 1)).to_i # Find the largest possible "root" of a square that might fit our number
-  until biggest_root < 1
-    if Prime.prime?(count - 2 * (biggest_root ** 2)) then
+  root = Math.sqrt(count / 2).floor # Find the largest possible "root" of a square that might fit our number
+  until root < 1
+    square = root ** 2
+    if Prime.prime?(count - (2 * square)) then
       break
     end
-    biggest_root -= 1
+    root -= 1
   end
-  if biggest_root == 0
+  if root == 0
     flag = true
     puts "Success! #{count} disproves the conjecture."
   end

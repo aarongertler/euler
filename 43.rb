@@ -14,11 +14,11 @@
 
 
 # There are 3.6 million possible permutations of the 10 digits
-# Presumably, we can exclude the 0.36 million exclude_numbers = /0|2|4|5|6|8/that start with 0 (but check this assumption if your answer is wrong)
+# Presumably, we can exclude the 0.36 million that start with 0 (but check this assumption if your answer is wrong)
 
 # The sixth digit needs to be 5 or 0
 # The fourth digit needs to be even
-# There are only 53 ways the last three digits can be arranged (986 - 102 / 17)
+# There are only 53 ways the last three digits can be arranged (53 = 986 - 102 / 17 = the number of multiples of 17 in that range) 
 # Build that into a permutation algorithm?
 
 # def digit_permutation(string)
@@ -46,24 +46,22 @@
 # This should actually cut short very quickly. Only 53 multiples of 17 to test, and most of them will be 
 # cut off after the 13 check. Let's see if we can write out this monster...
 
-$solutions = []   # Declaring a global feels wrong, but it's a shortcut to knock this one out for now 
+$solutions = []
 
-def digit_loop(digit_string, prime_index, array)
-  prime_array = [17,13,11,7,5,3,2]
+def digit_loop(digit_string, prime_index, digits) # Takes a multiple of 17 and checks each prime multiple if we find working digits to add
+  prime_array = [13,11,7,5,3,2]
   prime = prime_array[prime_index]
   if digit_string.length == 9
-    puts "We found a solution: #{array[0] + digit_string} for seed value #{digit_string[6..-1]}"
-    $solutions << (array[0] + digit_string).to_i
+    pandigital = digits[0] + digit_string
+    puts "We found a solution: #{pandigital} for seed value #{digit_string[6..-1]}"
+    $solutions << pandigital.to_i
   else
-    for i in (0...array.length)
-      if i == array.length then  # For some reason, i was looping too far
-        break
+    for i in (0..digits.length - 1) # Had three periods, needed two
+      digit_string = digits[i] + digit_string # Add next digit in front of existing digits to make a new number to test
+      if digit_string[0..2].to_i % prime == 0 # Check whether the first three digits of the current number are divisible by the prime we're checking
+        digit_loop(digit_string, prime_index + 1, (digits - [digits[i]])) # Every time we find a digit that "fits", we recur the loop through all possible combinations of other digits
       end
-      digit_string = array[i] + digit_string # Add next digit in front of array
-      if digit_string[0..2].to_i % prime == 0
-        digit_loop(digit_string, prime_index + 1, (array - [array[i]]))
-      end
-      digit_string = digit_string[1..-1]
+      digit_string = digit_string[1..-1] # Remove the digit we tried if it didn't work, try the next digit insteads
     end
   end
 end
@@ -78,8 +76,48 @@ until count * 17 > 1000    # Seed our test pandigitals with multiples of 17
     digit_array = digit_array - [string[i]]
   end
   if digit_array.length == 7
-    digit_loop(string, 1, digit_array)
+    digit_loop(string, 0, digit_array) # Our multiple of 17 has no duplicates! Let's see if we can use it to build a pandigital
   end
 end
 
 puts $solutions.inject(0, :+)
+
+
+# Other options: Just use brute force (but I think this recursive solution is prettier, even if it may be a bit slower? Uncertain)
+
+
+# Using a bunch of each_do lists might be a bit more efficient, as with this elegant solution:
+
+# d_17s = []
+# (17..999).each do |i|
+#   if i % 17 == 0
+#     to_push = i.to_s
+#     to_push.prepend('0') if to_push.length < 3
+#     d_17s << to_push
+#   end
+# end
+
+# to_do_list = d_17s
+# len = 4
+# [13, 11, 7, 5, 3, 2].each do |p|
+#   tmp_list = [] # Aaron's note: Once we find working multiplew of 13 for a 17 base, we add it here and try 11, and so on
+#   to_do_list.each do |n|
+#     (0..9).each do |o|
+#       if (o.to_s + n[0..1]).to_i % p == 0
+#         push_data = o.to_s + n[0..-1]
+#         tmp_list << push_data  if push_data.chars.uniq.count == len
+#       end
+#     end
+#   end
+#   len += 1
+#   to_do_list = tmp_list  # Aaron's note: Take all the working numbers we've found so far, then make them "todos" to test with the other primes
+# end
+
+# sum = 0
+
+# # This is to find the first digit and then sum them
+# to_do_list.each do |ans|
+#   sum += (ans.prepend(('1234567890'.chars - ans.chars).join(''))).to_i
+# end
+
+# puts sum
