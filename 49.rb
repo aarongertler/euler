@@ -11,25 +11,29 @@ require 'prime'
 
 i = 1001
 
-until i > 9876 # End loop at the last number which could feasibly begin a permutation addition sequence (the third-largest 9876 permutation)
+until i > 9786 # End loop at the last number which could feasibly begin a permutation addition sequence (the third-largest 9876 permutation)
   if Prime.prime?(i)
     i_perm = i.to_s.chars.sort.join
-    biggest_increase = (10000 - i) / 2
-    j = [(i_perm[2].to_i - i_perm[1].to_i * 40),2].max # Imagine n = 1234. The second-smallest permutation is 1243. The third-smallest is 1324. The difference between the smallest and largest of these is 81. j * 2 must > 81. Thus, j > 40. Specifically, j > 40 * (third-smallest digit - second-smallest digit). j can be bounded more rigorously, I think, but the loop runs fast enough that I'll pass for now.
-    until j > biggest_increase
-      second = i + j
+    biggest_increase = (10000 - i) / 2 # The largest amount we can increase by and still have a four-digit number
+    increase = 54 # No number exists where the smallest and third-smallest permutations are less than 90 apart (e.g. 1234 and 1324), and the difference must be a multiple of 18 (multiples of 9 "rotate" numbers, and the difference must be even to leave only odd numbers)
+    until increase > biggest_increase
+      second = i + increase
       if i_perm == second.to_s.chars.sort.join && Prime.prime?(second)
-        third = second + j
+        third = second + increase
         if i_perm == third.to_s.chars.sort.join && Prime.prime?(third)
           puts "Success! The numbers are #{i}, #{second}, and #{third}."
         end
       end
-      j += 2 # j must be even (because, added to an odd number, it must return an odd number)
+      increase += 18 # As noted in line 18, the difference must be a multiple of 18
     end
   end
   i += 2 # i must be odd (because it is prime)
 end
 
-# Ways to make this faster:
-# 1. Doing more math to put harder restrictions on i-values and j-values worth checking (especially if we want to check numbers with more digits)
-# 2. For this particular code, going for readability (starting j at 2, for example) may be better than going for more speed.
+# Ways to make this faster (though it already runs in half a second):
+# Doing more math to put harder restrictions on i-values and j-values worth checking (especially if we want to check numbers with more digits)
+#   For example, we could turn each number into an array of permutations, only keep numbers with at least three prime permutations, and then test differences
+#     between those permutations
+#   Or you could just test the addition of 3330 to your starting numbers (as this creates another permutation)
+#     This doesn't capture all relevant numbers for all digit counts, but it's a great shortcut to test many possibilities
+#     And there are other similar "rotation" numbers we could check specially (e.g. 4500)

@@ -16,3 +16,5 @@ end
 puts sum  # Well, we do get a number. Was it rounded automatically?
 
 # ...no, it was not. Now I see why this problem was so popular.
+
+# Lots of fun assembly-language solutions within Euler as a treat!

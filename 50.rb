@@ -12,39 +12,25 @@
 # We know that the prime in question must be the sum of at least 22 consecutive primes
 # And must be the sum of, at most, as many primes as it takes from 2...x before the sum exceeds one million
 
-require 'prime'
-
-prime_array = Prime.take_while {|p| p < 100000 }
-
-# i = 0
-# sum = 0
-
-# while sum < 1000000
-#   sum += prime_array[i]
-#   i += 1
-# end
-
-# puts sum - prime_array[i] # Alas, this number isn't prime
-# puts i # 
-
-
 # Brute-force way: Add all prime numbers starting with "start" (the first prime in the sequence)
 # Every time the sum is prime, record the number of consecutive primes you've added (if the streak is the longest streak you've seen so far)
 # Keep choosing new start values and finding the longest consecutive sequences you can, until the start value is too high to work
 # (Because any sufficiently long streak at that point would add up to more than a million)
 
-n = 0
-i = 0
-consecutive = 0
-consecutive_n = 0
+require 'prime'
 
-for start in (0..100)
+prime_array = Prime.take_while {|p| p < 50000 } # If we're adding 22 primes over 50000, our number will be over a million
+
+longest_streak = 0 # The most consecutive primes we've been able to put together
+
+for start in (0..100) # Starting with small initial values to see if we get a working answer (to get a long range, starting index is probably low anyway)
   i = start # The index of the first prime number in our sequence
   n = 0
   while n < 1000000
-    if i - start > consecutive && Prime.prime?(n)
-      consecutive = i - start # Set number of consecutive primes equal to the number of primes between our current and starting index if we've hit our longest streak ever
-      consecutive_n = n
+    streak = i - start
+    if streak > longest_streak && Prime.prime?(n) # If we've gone far enough to break our record streak and see a prime number, record our new record!
+      longest_streak = streak # Set number of consecutive primes = number of primes between our current and starting indicies if we've hit our longest streak ever
+      sum = n
       range = [prime_array[start], prime_array[i]]
     end
     n += prime_array[i]
@@ -52,6 +38,8 @@ for start in (0..100)
   end
 end
 
-puts consecutive
-puts consecutive_n
-puts range
+puts longest_streak
+puts sum
+print range
+
+# Fast enough that boosting speed isn't a huge concern, but there are some interesting Ruby solutions in the Euler thread

@@ -17,41 +17,55 @@
 
 require 'prime'
 
-def factors n 
-  factor_sum = 0
-  count = 2
-  if Prime.prime?(n)   # Primes take a while to factor, let's skip that by running a faster prime check on them (at least, I think it's faster than counting all the way up to n / n. Not entirely sure.)
-    return 1
-  end
-  until factor_sum == 5 || n == 1  # For the purposes of this problem, we can give up on a number once it has more than four distinct prime factors
-    if n % count == 0
-      while n % count == 0
-        n = n / count
-      end
-      factor_sum += 1
-    end
-    count += 1
-  end
-  return factor_sum
-end
+# def factors n 
+#   factor_sum = 0
+#   count = 2
+#   if Prime.prime?(n)   # Primes take a while to factor, let's skip that by running a prime check on them
+#     return 1
+#   end
+#   until factor_sum == 5 || n == 1  # For the purposes of this problem, we can give up on a number once it has more than four distinct prime factors
+#     if n % count == 0
+#       while n % count == 0
+#         n = n / count
+#       end
+#       factor_sum += 1
+#     end
+#     count += 1
+#   end
+#   return factor_sum
+# end
 
-puts factors(644)
+# n = 647 # We know that 646 isn't our first number
+# consecutive = 1
 
-n = 0
+# until consecutive == 4
+#   n += 1
+#   if factors(n) != 4
+#     consecutive = 0
+#   else
+#     consecutive += 1 # Increment each time n has four distinct factors; zero otherwise; will only be four once we have four consecutive working n-values
+#   end
+# end
+
+# puts n - 3 # Get the first number, not the fourth  # Takes 25 seconds on the Inspiron! Goodness!
+
+
+
+# Trying a version that uses Ruby's pre-built function for this
+
+n = 647 # We know that 646 isn't our first number
 consecutive = 1
 
 until consecutive == 4
   n += 1
-  if factors(n) != 4
+  if n.prime_division.count != 4 # Look, Ruby will do this for me!
     consecutive = 0
   else
     consecutive += 1 # Increment each time n has four distinct factors; zero otherwise; will only be four once we have four consecutive working n-values
   end
 end
 
-puts n - 3 # Get the first number, not the fourth
-
-
+puts n - 3 # Yes, having the factors cached makes this 20x as fast, good to know!
 
 
 # More advanced Ruby solution someone suggested in the forum:
