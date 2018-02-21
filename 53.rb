@@ -47,3 +47,5 @@ for i in (23..100)
 end
 
 puts "Number of values: #{values}"
+
+# Ways to make this faster: Use Pascal's Triangle to build up an array of n_choose_r values, rather than calculating everything from scratch
