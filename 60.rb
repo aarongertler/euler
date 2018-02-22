@@ -13,7 +13,7 @@
 
 require 'prime'
 
-$prime_array = Prime.take_while {|p| p < 100 } # We'll keep testing upper limits until we hit the right answer
+$prime_array = Prime.take_while {|p| p < 10000 } # We'll keep testing upper limits until we hit the right answer
 
 def digits n 
 	Math.log10(n).to_i + 1
@@ -27,31 +27,33 @@ end
 # 	(n1.to_s + n2.to_s).to_i
 # end
 
-def create_set primes, start # Pass in an array of 1-5 primes
+def create_set primes, next_prime # Pass in an array of 1-5 primes
 	if primes.length == 5
 		return primes
 	end
 	i = 0
-	$prime_array[start,$prime_array.length - 1].each do |i| # Only test primes we haven't checked yet
-		puts "Now checking #{i}"
-		if primes.all? { |x| Prime.prime?(concatenate(x, i)) && Prime.prime?(concatenate(i, x))}
-			puts "#{i} works with #{primes}"
-			primes << i
-			return create_set(primes, $prime_array.index(primes.last) + 1) # Needed a "return" statement here, otherwise it would stop at the working number, run a futile create_set loop, then come back to where it left off and run again
+	$prime_array.each do |i| # Only test primes we haven't checked yet
+		if i > next_prime
+			if primes.all? { |x| Prime.prime?(concatenate(x, i)) && Prime.prime?(concatenate(i, x))}
+				# puts "#{i} works with #{primes}"
+				primes << i
+				return create_set(primes, primes.last) # Needed a "return" statement here, otherwise it would stop at the working number, run a futile create_set loop, then come back to where it left off and run again
+			end
 		end
 	end
+	unless primes.length == 1
+		return create_set(primes - [primes.last], primes.last) # If the last set of primes didn't have a solution, remove the most recent prime you added and keep going with the previous numbers
+	end
+	false
 end
 
-# $prime_array.each do |i|
-# 	value = create_set([i])
-# 	if value != false
-# 		puts "The final set of primes: #{value}"
-# 		exit
-# 	end
-# end
-
-puts create_set([13], 0)
-# puts Prime.prime?(concatenate(13, 5197)) && Prime.prime?(concatenate(5197, 13))
+$prime_array.each do |i|
+	value = create_set([i], i)
+	if value != false
+		puts "The final set of primes: #{value}" # Pops out the answer in about 11 seconds, which (considering the slowness of other people's algorithms) I will accept
+		exit
+	end
+end
 
 
 
