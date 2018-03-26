@@ -28,7 +28,7 @@ end
 # end
 
 def create_set primes, next_prime # Pass in an array of 1-5 primes
-	if primes.length == 5
+	if primes.length == 5 # For now, we'll return the first set of five primes we find and assume that the sum will be lowest that way
 		return primes
 	end
 	i = 0
@@ -59,18 +59,8 @@ end
 
 # Initial problem: We were getting "stuck" with certain prime combinations
 # For example, we'd have 13 and 19 and would then miss something like 5197 (which should've worked)
-
-# puts create_set([3391,3433,3643,6607]) # Testing some promising 4-sets, but nothing works with primes up to 100000
-# puts create_set([1283,1619,4127,7949])
-# puts create_set([467,587,617,6323])
-# puts create_set([11,23,743,1871])
-# puts create_set([23,47,1481,4211])
-# puts create_set([43,97,1381,8521])
-# puts create_set([89,107,1061,4973])
+# The use of a "start" variable in the create_set function fixed this
 
 
-
-
-
-
-
+# Ways to make this faster: 
+# 1) Somehow skip pairs of primes that we've already checked and found to not work (this seems like more trouble than it would be worth)
