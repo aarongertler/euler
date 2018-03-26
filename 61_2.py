@@ -58,3 +58,48 @@ for shape, number in polys: # For every polygonal number...
 # By the end of the above, we'll have 1035 linked with all the 35xx numbers (for example)
 
 for shape, number in chains: find_chain([shape], [number])
+
+
+# Ways to improve this:
+
+# Make all the floats integers
+# Or change integers to strings and see if that improves the performance of cyclical checks
+
+
+# A good recursive function (similar to my first attempt, but just calculates all numbers beforehand the way I should've)
+
+# size = 150
+# array = [0]*size
+# matrix = [array[:] for i in range(6)]
+
+# for i in range(size):
+#     matrix[0][i-1] = i*(i-1)//2
+#     matrix[1][i-1] = i*i
+#     matrix[2][i-1] = i*(3*i-1)//2
+#     matrix[3][i-1] = i*(2*i-1)
+#     matrix[4][i-1] = i*(5*i-3)//2
+#     matrix[5][i-1] = i*(3*i-2)
+# matrix = [[str(i) for i in array if i>1000 and i<10000] for array in matrix]
+
+# def func(num, matrix, unused): # Takes a number, returns a dictionary showing all the numbers it could connect two (each of which is attached to a set of the shapes we'd still need to finish the cycle)
+#     possible = {}
+#     for i in unused: 
+#         for element in matrix[i]:
+#             if num[2:] == element[:2]:
+#                 possible[element] = [j for j in unused if j != i]
+#     return possible # Looks something like {3557: [5,6,7,8], 3568: [4,5,7,8]} (making up these numders)
+
+# for num in matrix[0]:
+#     p1 = func(num, matrix, range(1,6))
+#     for num2 in p1: # Every time we return a set of possible chains, we see which chains keep going with one of the shapes we still need to fill
+#         p2 = func(num2, matrix, p1[num2])
+#         for num3 in p2: 
+#             p3 = func(num3, matrix, p2[num3])
+#             for num4 in p3:
+#                 p4 = func(num4, matrix, p3[num4])
+#                 for num5 in p4:
+#                     p5 = func(num5, matrix, p4[num5])
+#                     if p5:
+#                         for num6 in p5:
+#                             if num6[2:] == num[:2]:
+#                                 print(num, num2, num3, num4, num5, num6)

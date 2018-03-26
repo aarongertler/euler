@@ -26,6 +26,12 @@ def triangle_check(n):
 	else:
 		return False
 
+for n in range(19, 59):
+	seed = n * (3*n - 2)
+	seeds.append(seed)
+
+# print(seeds)
+
 def square_check(n):
 	return sqrt(n).is_integer()
 
@@ -88,12 +94,6 @@ def octagon_check(n):
 
 checks = [triangle_check, square_check, pentagon_check, hexagon_check, heptagon_check]
 seeds = []
-
-for n in range(19, 59):
-	seed = n * (3*n - 2)
-	seeds.append(seed)
-
-# print(seeds)
 
 
 # Try doing recursively: Don't keep creating lists, but call a new function with a list of checks that doesn't include the successful one?
