@@ -34,17 +34,18 @@ start = 2747109376 # Last 10 digits of 2^1000000 (NOTE: Might be somewhat off if
 
 while count < 7830457: # As it turns out, this is easily fast enough
 	result = int(start) # Needs to have "int" to avoid assigning two names to the same variable
-	start = str(result*2)[-10:]
+	# start = str(result*2)[-10:] # Went for modulo instead
+	start = result*2 % 10**10
 	count += 1
 
 answer = str(28433*(int(start)) + 1)[-10:]
 
-print("Answer:", answer) # Answer comes out in 5 seconds
+print("Answer:", answer) # Answer comes out in 4 seconds
 
 
 # Ways to make this faster:
 # 1. Well, this is easy. Python's pow() function apparently returns super-fast results if you use a modulus to keep the number of digits down.
-	# This makes the solution instant.
+	# This makes the solution instant. (Similar to what I've done, but uses larger multipliers / squaring on "result" to take fewer steps)
 
 # print(str(pow(2, 1000000, 10**10))[-10:])
 
