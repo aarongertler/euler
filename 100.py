@@ -80,7 +80,7 @@ while flag == False:
 
 # b / (2 - sqrt(2)) = a / sqrt(2)
 
-a = int((b * sqrt(2)) / (2 - sqrt(2)))
+a = round(((b * sqrt(2)) / (2 - sqrt(2))), 0)
 
 print("a =", a) # Note: Answer is rounded up, not down, but that's not hard to check (takes < 1 second)
 
