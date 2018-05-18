@@ -12,14 +12,34 @@
 # Find the least number for which the proportion of bouncy numbers is exactly 99%.
 
 
+# def is_bouncy(n): # This was the wrong approach, too hard to check against the same digit repeating multiple times in a row
+# 	s = [int(d) for d in str(n)]
+# 	i = 1
+# 	while i < len(s) - 1:
+# 		print("i:", i)
+# 		print("s[i]:", s[i])
+# 		print(s[:i])		
+# 		print(s[i + 1:])
+# 		if (s[i] > max(s[:i]) and s[i] > max(s[i + 1:])) or (s[i] < min(s[:i]) and s[i] < min(s[i + 1:])):
+# 			return True
+# 		i += 1
+# 	return False
+
 def is_bouncy(n):
-	s = str(n)
+	status = None
+	s = [int(d) for d in str(n)]
 	i = 1
-	while i < len(s) - 1:
-		if (s[i] >= max(s[:i - 1]) and s[i] >= max(s[i + 1:])) or (s[i] <= min(s[:i - 1]) and s[i] <= min(s[i + 1:])):
-			return True
+	while (status != "bouncy") and i < len(s):
+		if (s[i] > s[i - 1]) and status == None:
+			status = "increasing"
+		if (s[i] < s[i - 1]) and status == None:
+			status = "decreasing"
+		if (s[i] > s[i - 1]) and status == "decreasing":
+			status = "bouncy"
+		if (s[i] < s[i - 1]) and status == "increasing":
+			status = "bouncy"
 		i += 1
-	return False
+	return status == "bouncy"
 
 # print(is_bouncy(525))
 # print(is_bouncy(66420))
@@ -27,17 +47,19 @@ def is_bouncy(n):
 
 bouncy = 0
 n = 99
+goal = 0.99 # The proportion we want to reach
 flag = False
 
 while flag == False:
 	n += 1
 	if is_bouncy(n):
 		bouncy += 1
-	else:
-		print("Non-bouncy n:", n)
-	if float(bouncy / n) == 0.9:
+	if float(bouncy / n) == goal:
 		flag = True
 
 print("Proportion:", float(bouncy / n))
 print("Number:", n)
+
+
+# Solution takes about 6 seconds
 
