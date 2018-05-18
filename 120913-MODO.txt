@@ -1,0 +1,36 @@
+1 Memorial to Genius
+1 The Eldest Reborn
+4 Karn, Scion of Urza
+3 The Mirari Conjecture
+3 Blink of an Eye
+1 Search for Azcanta
+3 Vraska's Contempt
+3 Field of Ruin
+1 Treasure Map
+1 Walk the Plank
+1 Bontu's Last Reckoning
+3 Doomfall
+4 Fetid Pools
+2 Commit
+3 Never
+4 Fatal Push
+1 Essence Extraction
+2 Evolving Wilds
+4 Drowned Catacomb
+1 Gilded Lotus
+6 Swamp
+4 Island
+2 Duress
+
+Sideboard
+1 Lich's Mastery
+1 Golden Demise
+1 Search for Azcanta
+1 Arguel's Blood Fast
+1 Bontu's Last Reckoning
+2 The Scarab God
+2 Gifted Aetherborn
+2 Essence Extraction
+2 Gonti, Lord of Luxury
+2 Duress
+
