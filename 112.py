@@ -27,7 +27,7 @@
 
 def is_bouncy(n):
 	status = None
-	s = [int(d) for d in str(n)]
+	s = str(n)
 	i = 1
 	while (status != "bouncy") and i < len(s):
 		if (s[i] > s[i - 1]) and status == None:
@@ -61,5 +61,6 @@ print("Proportion:", float(bouncy / n))
 print("Number:", n)
 
 
-# Solution takes about 6 seconds
-
+# Solution takes about 5 seconds, Dreamshire's algorithm isn't appreciably faster 
+# (does have one less check, though, since it just sets "increasing" and "decreasing" 
+# separately and calls "bouncy" if both return true)
