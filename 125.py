@@ -16,7 +16,6 @@
 # Still, I'll start with brute force:
 
 limit = 10**8
-total = 0
 last_check = int(limit**0.5) # This number squared is already near the limit, so we'll never add to it
 
 def palindrome(n):
@@ -25,15 +24,16 @@ def palindrome(n):
 # print(palindrome(595))
 
 # for i in range(1, last_check): # Is it more efficient to draw from an array of square numbers, or to square repeatedly as you go along?
-# 	s, numbers_added = 0, 0 # Record the sum as we go along, and note when we've actually added multiple numbers
-# 	for j in range(i, last_check):
+# 	s = i**2
+#		for j in range(i + 1, last_check): # Was making mistake of looking at whole range here, not stopping when we hit limit
 # 		s += j**2
-# 		numbers_added += 1
-# 		if palindrome(s) and s < limit and numbers_added > 1:
+#			if s > limit: # Added this line to speed things up
+#				break 
+# 		if palindrome(s):
 # 			print("Palindrome found:", s)
-# 			total += s
+# 			total += s # would need to fix this to only grab unique palindromes, too
 
-# print("Total:", total) # Works in theory, much too slow in practice
+# print("Total:", total) # Works in theory, slow in practice
 
 # Let's think about the mathematical properties of numbers that are the sum of consecutive squares:
 
@@ -55,7 +55,7 @@ def sum_of_squares(n, m):
 
 # print(sum_of_squares(6,6)) # Perfect! Gets us 595
 
-pals = []
+palindromes = set()
 count = 0
 for i in range(1, last_check):
 	for j in range(i + 1, last_check): # Add 1 to i so we take at least one "step"
@@ -64,26 +64,8 @@ for i in range(1, last_check):
 			break
 		if palindrome(sos):
 			count += 1
-			print("Palindrome found:", sos, "Count:", count)
-			pals.append(sos)
-			total += sos
+			# print("Palindrome found:", sos, "Count:", count)
+			palindromes.add(sos)
 
-print(sum(pals))
-print(total) # Finishes in one second!
-
-def pe125(L):
-	count = 0
-	pal = set()
-	sqrt_L = int(L ** 0.5)
-	for i in range(1, sqrt_L):
-		sos = i*i
-		while sos < L:
-			i += 1
-			sos += i*i
-			if palindrome(sos): 
-				count += 1
-				print("Palindrome found:", sos, "Count:", count)
-				pal.add(sos)
-	return sum(pal)
-
-print("PE125: Sum of unique palindromes:", pe125(10**8))
+# print(sum(pals))
+print(sum(palindromes)) # Finishes in one second! Just had to adjust for the "unique" palindrome instruction
