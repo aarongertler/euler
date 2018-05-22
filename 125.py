@@ -17,12 +17,12 @@
 
 limit = 10**8
 total = 0
-last_check = int(limit**0.5) + 1 # Since this number squared is already very close to the total, it's the last number we'd ever need to add to any sum
+last_check = int(limit**0.5) # This number squared is already near the limit, so we'll never add to it
 
-# def palindrome(n):
-# 	return str(n) == str(n)[::-1]
+def palindrome(n):
+	return str(n) == str(n)[::-1]
 
-# # print(palindrome(595))
+# print(palindrome(595))
 
 # for i in range(1, last_check): # Is it more efficient to draw from an array of square numbers, or to square repeatedly as you go along?
 # 	s, numbers_added = 0, 0 # Record the sum as we go along, and note when we've actually added multiple numbers
@@ -35,11 +35,55 @@ last_check = int(limit**0.5) + 1 # Since this number squared is already very clo
 
 # print("Total:", total) # Works in theory, much too slow in practice
 
-
 # Let's think about the mathematical properties of numbers that are the sum of consecutive squares:
 
 # Starting at 1^2, we have 1, 5, 14, 30...
 # Starting at 2^2, we have 4, 13, 29, 54...
 # The formula starting at 1^2 is (n)(n + 1)(2n + 1) / 6
-# If we think about the general case of starting at n + 1, we have (n + 1)^2 + (n + 2)^2 ... + (n + m)^2
-# Which comes out to n^2 + 2n + 1 + n^2 + 4n + 4 ... + n^2 + 2mn + m^2
+# If we think about the general case of starting at n, we have n^2 + (n + 1)^2 + (n + 2)^2 ... + (n + m)^2
+# (Where m is the number of squares we look at beyond the first)
+# Which comes out to n^2 + (n^2 + 2n + 1) + (n^2 + 4n + 4) ... + (n^2 + 2mn + m^2)
+# Which is the same as n^2 + m*n^2 + m*(mn+n) + (m)(m+1)(2m+1)/6
+# Second term: We add n^2 m times
+# Third term: We have m terms in a series with average value (2mn + 2n)/2 (first + last / 2)
+# Fourth term: Just the formula for adding 1^2 to m^2, see above
+
+# Making sure this formula works...
+
+def sum_of_squares(n, m):
+	return n**2 + m*(n**2) + m*(m*n + n) + m*(m + 1)*(2*m + 1)/6
+
+# print(sum_of_squares(6,6)) # Perfect! Gets us 595
+
+pals = []
+count = 0
+for i in range(1, last_check):
+	for j in range(i + 1, last_check): # Add 1 to i so we take at least one "step"
+		sos = int(sum_of_squares(i, j-i))
+		if sos > limit:
+			break
+		if palindrome(sos):
+			count += 1
+			print("Palindrome found:", sos, "Count:", count)
+			pals.append(sos)
+			total += sos
+
+print(sum(pals))
+print(total) # Finishes in one second!
+
+def pe125(L):
+	count = 0
+	pal = set()
+	sqrt_L = int(L ** 0.5)
+	for i in range(1, sqrt_L):
+		sos = i*i
+		while sos < L:
+			i += 1
+			sos += i*i
+			if palindrome(sos): 
+				count += 1
+				print("Palindrome found:", sos, "Count:", count)
+				pal.add(sos)
+	return sum(pal)
+
+print("PE125: Sum of unique palindromes:", pe125(10**8))
