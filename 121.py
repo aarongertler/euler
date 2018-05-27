@@ -37,3 +37,5 @@ def permutations(list): # Return all permutations of a list of numbers, in list 
 
 
 # Remember to do lots of mapping here!
+
+# Commit for EA forum
