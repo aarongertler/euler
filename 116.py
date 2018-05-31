@@ -32,5 +32,44 @@
 	# If you move it one away from the edge, you give the other 2 tiles a space of 9 blacks (3 options). If you move it two away from the edge, you give
 	# the other 2 tiles a space of 8 blacks (one option).
 
-# This pattern will continue for any number of tiles, which means we'll have to engage in some heavy-duty dynamic programming:
+# This pattern will continue for any number of tiles, which means we'll have to engage in some heavy-duty dynamic programming.
+
+# We need an array that remembers certain values from the "past".
+# If we want to figure out how many ways to fit two blues into ten blacks, we need to be able to check the number of ways to fit one blue
+	# into six, five, and four blacks
+# If we want to figure out how many ways to fit three blues into fourteen blacks, we need to be able to check the number of ways to fit
+	# two blues into ten, nine, and eight blacks
+
+
+ways = [[0]]
+
+def n_ways(tile, row): # tile = length of colored tile, row = # of black tiles
+	i = 0
+	while i < row:
+		i += 1
+		ways.append([0])
+		if i < tile:
+			print("Ways:", ways, "i:", i)
+			ways[i] = [0]
+		j, count = i, 0
+		while j >= tile:
+			ways[i] = [j - tile + 1]
+			print("Ways:", ways, "i:", i, "j:", j)
+			ways[i][count] = ways[i - tile][count - 1]
+			t = tile
+			while t > 1:
+				ways[i][count] += ways[i - t][count - 1]
+				t -= 1
+			count += 1
+			j -= tile
+	print("Ways array:", ways)
+	print("Total ways:", sum(ways))
+
+n_ways(4, 10)
+
+
+
+
+
+
 
