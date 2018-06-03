@@ -20,14 +20,16 @@ for i in range(2400, 2510):
 	# print(remainder(6, i)) # First six numbers repeat
 	# print(remainder(5, i)) # First 10 numbers repeat
 	# print(remainder(50, i)) # Highest remainder steadily increases
-	print(remainder(500, i), "n =", i) # Similar to 50, no apparent upper limit... until I start looking at values in the 1000 range
+	# print(remainder(500, i), "n =", i) # Similar to 50, no apparent upper limit... until I start looking at values in the 1000 range
 
 
 # So every number does seem to hit a natural limit. But what is that limit?
 
 # Every even value of n returns a remainder of 2 (1^2 + (-1)^2)
 
-# Odd values of n are more interesting. They seem to run their course and go "back to zero"
+# Odd values of n are more interesting. They run their course and go "back to zero"
 # at some multiple of half our a value (e.g. 1249 gives a local maximum for a = 500, as does 2499)
+
+# 
 
 
