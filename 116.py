@@ -74,7 +74,8 @@ print(n_ways(2, 50) + n_ways(3, 50) + n_ways(4, 50)) # Boom! That was quick
 # def F(m, n):
 #     ways = [1] * m + [0] * (n-m+1) # Set up the full array, with ones "seeded"
 #     for j in range(m, n+1): # Lets us get the "ways" for each number as we go
-#         ways[j] += ways[j - 1] + ways[j - m] # Start with the previous number of solutions, then add number of solutions for current row with a tile placed already? Not totally sure where this comes from
+#         ways[j] += ways[j - 1] + ways[j - m] # Whenever you add a new tile, you add one space to the left of every solution you had last time (j-1) and add one tile to the left of every solution you had one "tile's length" ago (j-m)
+																									# No need to worry about spaces to the right -- that's taken care of by the j-m solutions
 #     return ways[n] - 1
 
 
