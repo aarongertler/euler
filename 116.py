@@ -41,33 +41,41 @@
 	# two blues into ten, nine, and eight blacks
 
 
-ways = [[0]]
 
 def n_ways(tile, row): # tile = length of colored tile, row = # of black tiles
+	ways = [[0]]
 	i = 0
 	while i < row:
 		i += 1
-		ways.append([0])
+		ways.append([0]) # Each index in the array contains a list of numbers for how many ways we can fit in 1 tile, 2 tiles, etc.
 		if i < tile:
-			print("Ways:", ways, "i:", i)
 			ways[i] = [0]
 		j, count = i, 0
+		if j >= tile:
+			j -= tile
+			ways[i] = [j + 1] # One more black tile in row = one more way to add a single colored tile
 		while j >= tile:
-			ways[i] = [j - tile + 1]
-			print("Ways:", ways, "i:", i, "j:", j)
-			ways[i][count] = ways[i - tile][count - 1]
-			t = tile
-			while t > 1:
-				ways[i][count] += ways[i - t][count - 1]
+			ways[i].append(ways[i - tile][count]) # Number of ways we can add one more tile once our first X tiles are in
+			t = j - tile
+			while t > 0: # Loop through as many different placements of our first X tiles as possible (e.g. for a tile of length 4 on 10 black tiles, we could place it on the far right (3 ways to place another tile), one to the left of that (2 ways), or one *more* to the left of that (leaving a space of four black tiles and one more way for another colored tile to fit in))
+				ways[i][count + 1] += ways[i - tile - t][count] # Find how many tiles we can fit into a space the size of what we have left
 				t -= 1
 			count += 1
 			j -= tile
-	print("Ways array:", ways)
-	print("Total ways:", sum(ways))
+	# print("Ways array:", ways)
+	# print("Total ways:", sum(ways[-1]))
+	return sum(ways[-1])
 
-n_ways(4, 10)
+print(n_ways(2, 50) + n_ways(3, 50) + n_ways(4, 50)) # Boom! That was quick
 
 
+# Dreamshire offers a shorter solution without as many fancy loops:
+
+# def F(m, n):
+#     ways = [1] * m + [0] * (n-m+1) # Set up the full array, with ones "seeded"
+#     for j in range(m, n+1): # Lets us get the "ways" for each number as we go
+#         ways[j] += ways[j - 1] + ways[j - m] # Start with the previous number of solutions, then add number of solutions for current row with a tile placed already? Not totally sure where this comes from
+#     return ways[n] - 1
 
 
 
