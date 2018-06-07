@@ -25,11 +25,39 @@ def interesting(n):
 	else:
 		while s < n:
 			s *= s
+			# n = n / s
+			# if not isinstance(n, int): # This was much slower than multiplying up
+			# 	return False
 			if s == n:
 				return True
 	return False
 
-start = 614656
+# print(interesting(614656))
 
-print(interesting(614656))
+# start = 512
+# count = 2
 
+# while count < 11:
+# 	start += 1
+# 	if interesting(start):
+# 		print(start, "is interesting!") # In this minor test, I found that I was actually missing some interesting numbers. Why?
+# 		count += 1
+
+# print(start) # Even finding the next *two* interesting numbers takes far too long...
+
+
+# Another option is to try doing this in reverse: Start with digit sums, and see which of them can be multiplied into a number with the right sum
+# (Consider this pattern whenever a problem includes sets of numbers that all share some property in common, like a sum of digits)
+
+
+interestings = []
+
+for s in range(2, 100):
+	for e in range(2, 12):
+		ex = s ** e
+		if digit_sum(ex) == s:
+			interestings.append(s ** e)
+
+interestings.sort()
+
+print(interestings[30])
