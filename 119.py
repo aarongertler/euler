@@ -49,6 +49,9 @@ def interesting(n):
 # Another option is to try doing this in reverse: Start with digit sums, and see which of them can be multiplied into a number with the right sum
 # (Consider this pattern whenever a problem includes sets of numbers that all share some property in common, like a sum of digits)
 
+# Thinking in ranges of this kind = much, much faster; you don't need to check all numbers if you can just check all powers of reasonable sums
+# (billions of numbers will all share a sum, but you can rule out all of those billions by looking at a few powers of said sum)
+
 
 interestings = []
 
@@ -60,4 +63,6 @@ for s in range(2, 100):
 
 interestings.sort()
 
-print(interestings[30])
+print(interestings[29]) # Well... that was a lot faster
+
+
