@@ -60,3 +60,6 @@ print(count)
 # (We can never get 11, can we ever get 1111 or 111111?)
 
 # We could also create all possible sums and then "check them off" as we hit them, to get a better understanding of these patterns
+
+# (There's probably some simple math I could do that would prove an answer easily, need to spend a bit more time thinking about the math
+# that generates the results I've seen...)
