@@ -15,3 +15,16 @@
 # And you can tile the bigger square if bigger square / smaller square is itself a square number
 
 # As usual, let's start with brute force...
+
+
+from math import sqrt
+
+# Insert pythagorean generator here
+
+limit = 10**8
+
+def square(n):
+	return sqrt(n) % 1 == 0
+
+def tile(bigger, smaller):
+	return square(bigger / smaller)
