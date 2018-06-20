@@ -19,9 +19,32 @@
 
 # This might at least give us an easier way to check reasonable value ranges
 
-# Highest possible y: 
+# Note: z = 2y - x
 
-# Highest possible z given y:
+# Highest possible y/z: We know that y^2 + z^2 + 1,000,000 > x^2 > y^2 + z^2
+# We also know that y = x - a, and z = x - 2a
+# (x - a)^2 + (x - 2a)^2 = 2x^2 - 6ax + 5a^2 < x^2
+# -x^2 > -6ax + 5a^2
+# x^2 < 6ax - 5a^2, 0 < -x^2 + 6ax - 5a^2, 0 > x^2 - 6ax + 5a^2, 0 > (x - a)(x - 5a)
+# So x - a must be positive (and x - 2a must be positive), and x - 5a must be negative.
+# ...does that actually help us much? We never have to deal with x - 5a, do we?
+
+# Highest possible x: x^2 - y^2 - z^2 ~= 999,999, when y = x-1 and z = x-2
+# So x^2 - (x - 1)^2 - (x - 2)^2 ~= 999,999
+# = x^2 - x^2 + 2x - 1 - x^2 + 4x - 4
+# = -x^2 + 6x - 5 = (-x + 1)(x - 5)... something's off here, this doesn't allow very large x values at all
+# So we actually want a big spread to get a "safe" x value
+# See above -- find a case where x - (x - a)(x - 5a) can't be between 1000000 and 0 for some value of x
+
+# limit = 10**6
+
+# while flag == False:
+# 	x += 1
+# 	while 
+
+
+# https://en.wikipedia.org/wiki/Congruum is almost helpful, but feels unrelated -- it finds squares that are equally far apart,
+# without specifying anything about what happens when you square numbers that are equally far apart.
 
 
 from math import sqrt, floor
@@ -31,18 +54,22 @@ def same_diff(x, y, z):
 
 diffs = [0] * 10**6
 limit = 10**6
-target = 1
+target = 10
 
-for x in range(1, 10**3): # Even checking with x^3 starts to get big...
-	for y in range(x - 1, (x**2 / 2), -1): # y must stay high enough that z can get us down into the right range
-		for z in range(floor(sqrt(x**2 - y**2)), 0, -(x - y)):
-			diff = same_diff(x, y, z)
-			if diff < limit:
-				diffs[diff] += 1
+for x in range(1, 10**4): # Even checking with x^3 starts to get big...
+	for y in range(x - 1, floor(sqrt(x**2 / 2)) + 1, -1): # y must stay high enough that z can get us down into the right range
+		z = 2*y - x
+		diff = same_diff(x, y, z)
+		if diff < limit:
+			diffs[diff] += 1
 
-for diff, ind in enumerate(diffs):
+total = 0
+for ind, diff in enumerate(diffs):
 	if diff == target:
-		print(ind)
+		total += 1
+
+print("# of answers:", total)
+print(diffs[0:100])
 
 
 # Something like the above structure might be fine, if we narrow the possible values... a lot.
