@@ -34,7 +34,13 @@
 # = x^2 - x^2 + 2x - 1 - x^2 + 4x - 4
 # = -x^2 + 6x - 5 = (-x + 1)(x - 5)... something's off here, this doesn't allow very large x values at all
 # So we actually want a big spread to get a "safe" x value
-# See above -- find a case where x - (x - a)(x - 5a) can't be between 1000000 and 0 for some value of x
+# See above -- find a case where x**2 - (x - a)(x - 5a) can't be between 1000000 and 0 for some value of x
+
+# Hm. The above line translates to x**2 - x**2 + 6ax - 5a**2 = 6ax - 5a**2
+# So now we want to look at all the values of a and x that allow this to give us an answer between 0 and 10**6
+# With a between 1 and ceil(x / 2) - 1
+# And with x seeming to be... almost unlimited? Needs more thought.
+
 
 # limit = 10**6
 
